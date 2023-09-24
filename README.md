@@ -8,12 +8,12 @@ A photo sorting software that uses cutting edge technology, machine learning, an
 We are _**C.R.R.A.N.k.S**_.
 
 ## Members
-* **Riley Meyerkorth** - Team Administrator
-* **Sam Aven** - Lead Developer
-* **Alex Doehring** - QA Lead
-* **Nicholas Holmes** - Creative Director
-* **Ryland Edwards** - Front-End Lead
-* **Colin Treanor** - Documentation Technician
+* **Riley Meyerkorth**   - Team Administrator
+* **Sam Aven**           - Lead Developer
+* **Alex Doehring**      - QA Lead
+* **Nicholas Holmes**    - Creative Director
+* **Ryland Edwards**     - Front-End Lead
+* **Colin Treanor**      - Documentation Technician
 
 ## Meetings
 Meetings, agendas, and logs can be found in the project [Wiki](https://github.com/m-riley04/EECS348-Project/wiki).
