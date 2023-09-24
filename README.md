@@ -5,6 +5,8 @@ A team project for EECS 348 - Software Development I at the University of Kansas
 A photo sorting software that uses cutting edge technology, machine learning, and more to efficiently, effectively, and easily sort images for photographers and average users alike!
 
 # The Team
+We are _**C.R.R.A.N.k.S**_.
+
 ## Members
 * **Riley Meyerkorth** - Team Administrator
 * **Sam Aven** - Lead Developer
