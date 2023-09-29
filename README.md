@@ -1,5 +1,5 @@
 # ShutterSort 
-<img src="ShutterSort%20Logo%20DRAFT.png" width="128"/>
+<img src="assets/ShutterSort%20Logo%20DRAFT.png" width="128"/>
 A team project for EECS 348 - Software Development I at the University of Kansas.
 
 
