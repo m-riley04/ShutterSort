@@ -2,7 +2,6 @@
 <img src="assets/ShutterSort%20Logo%20DRAFT.png" width="128"/>
 A team project for EECS 348 - Software Development I at the University of Kansas.
 
-
 ## Project Description
 A photo sorting software that uses cutting edge technology, machine learning, and more to efficiently, effectively, and easily sort images for photographers and average users alike!
 
