@@ -1,0 +1,272 @@
+<mxfile host="app.diagrams.net" modified="2023-10-13T05:20:18.748Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="GuSfLMfk-B7U-8lJvGuY" version="22.0.0" type="device">
+  <diagram name="Page-1" id="Lupr_SWoPYKB-GhK5xZ4">
+    <mxGraphModel dx="2746" dy="934" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B3tBt2Ysn_EMWluu0rf4-3" target="B3tBt2Ysn_EMWluu0rf4-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-740" y="510" />
+              <mxPoint x="-740" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B3tBt2Ysn_EMWluu0rf4-3" target="B3tBt2Ysn_EMWluu0rf4-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B3tBt2Ysn_EMWluu0rf4-3" target="B3tBt2Ysn_EMWluu0rf4-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-740" y="510" />
+              <mxPoint x="-740" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B3tBt2Ysn_EMWluu0rf4-3" target="B3tBt2Ysn_EMWluu0rf4-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-740" y="510" />
+              <mxPoint x="-740" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B3tBt2Ysn_EMWluu0rf4-3" target="B3tBt2Ysn_EMWluu0rf4-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-640" y="510" />
+              <mxPoint x="-640" y="145" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B3tBt2Ysn_EMWluu0rf4-3" target="B3tBt2Ysn_EMWluu0rf4-19">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-640" y="510" />
+              <mxPoint x="-640" y="805" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-3" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-710" y="480" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-5" value="&lt;div&gt;System&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-620" y="40" width="1240" height="1020" as="geometry">
+            <mxRectangle x="-620" y="40" width="80" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-1" value="Open the GUI" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="30" y="60" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-19" value="Drop images into Anchor Point" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="30" y="720" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-24" value="&lt;div&gt;Open App Settings Page&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="30" y="190" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-27" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-24" target="B3tBt2Ysn_EMWluu0rf4-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="220" as="sourcePoint" />
+            <mxPoint x="220" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-32" value="Sort images based on desired parameters" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="250" y="725" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-33" value="&lt;div&gt;Set Anchor Point&lt;br&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="350" y="60" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-35" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-33" target="B3tBt2Ysn_EMWluu0rf4-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="240" as="sourcePoint" />
+            <mxPoint x="330" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-37" value="&lt;div&gt;Create New Folder&lt;br&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="270" y="200" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-38" value="&lt;div&gt;Choose Existing Folder&lt;br&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="430" y="200" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-40" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-37" target="B3tBt2Ysn_EMWluu0rf4-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="410" as="sourcePoint" />
+            <mxPoint x="440" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-41" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-38" target="B3tBt2Ysn_EMWluu0rf4-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="410" as="sourcePoint" />
+            <mxPoint x="430" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-42" value="Configure Sorting Methods" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="690" y="60" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-45" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-32" target="B3tBt2Ysn_EMWluu0rf4-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="720" as="sourcePoint" />
+            <mxPoint x="320" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-46" value="Sort by Metadata" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="460" y="630" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-47" value="Sort by ML (object/person/structure)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="460" y="725" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-48" value="Sort by pixel data" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="460" y="820" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-49" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-32" target="B3tBt2Ysn_EMWluu0rf4-46">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="690" as="sourcePoint" />
+            <mxPoint x="380" y="640" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="410" y="765" />
+              <mxPoint x="410" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-50" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-47" target="B3tBt2Ysn_EMWluu0rf4-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="920" as="sourcePoint" />
+            <mxPoint x="370" y="870" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="430" y="765" />
+              <mxPoint x="430" y="765" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-51" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-48" target="B3tBt2Ysn_EMWluu0rf4-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="940" as="sourcePoint" />
+            <mxPoint x="360" y="890" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="410" y="860" />
+              <mxPoint x="410" y="765" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-52" value="Change the priority/order" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="640" y="230" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-53" value="Enable/disable method" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="750" y="230" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-54" value="Modify data ranges" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="860" y="230" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-55" value="Add/remove sorting method from list" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="1090" y="235" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-56" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-42" target="B3tBt2Ysn_EMWluu0rf4-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="260" as="sourcePoint" />
+            <mxPoint x="630" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-57" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-52" target="B3tBt2Ysn_EMWluu0rf4-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="670" y="450" as="sourcePoint" />
+            <mxPoint x="720" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-58" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-53" target="B3tBt2Ysn_EMWluu0rf4-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="920" y="200" as="sourcePoint" />
+            <mxPoint x="970" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-59" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-54" target="B3tBt2Ysn_EMWluu0rf4-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="890" y="170" as="sourcePoint" />
+            <mxPoint x="940" y="120" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="910" y="190" />
+              <mxPoint x="750" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-62" value="Change output folder for specific method" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="970" y="235" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-63" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-62" target="B3tBt2Ysn_EMWluu0rf4-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1030" y="460" as="sourcePoint" />
+            <mxPoint x="1080" y="410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1020" y="190" />
+              <mxPoint x="750" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-64" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-55" target="B3tBt2Ysn_EMWluu0rf4-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="440" as="sourcePoint" />
+            <mxPoint x="880" y="390" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1140" y="190" />
+              <mxPoint x="750" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-65" value="Toggle auto-run" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="30" y="330" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-66" value="Toggle live-sorting" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="170" y="330" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-67" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-65" target="B3tBt2Ysn_EMWluu0rf4-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60" y="580" as="sourcePoint" />
+            <mxPoint x="110" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-68" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-66" target="B3tBt2Ysn_EMWluu0rf4-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="480" as="sourcePoint" />
+            <mxPoint x="260" y="430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="230" y="310" />
+              <mxPoint x="90" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-71" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-73" target="B3tBt2Ysn_EMWluu0rf4-46">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="680" y="669.9999999999998" as="sourcePoint" />
+            <mxPoint x="740" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-73" value="Metadata Sorting Method Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="670" y="590" width="180" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-74" value="&lt;div&gt;Save/load sorting preset&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B3tBt2Ysn_EMWluu0rf4-5">
+          <mxGeometry x="900" y="60" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-75" value="" style="endArrow=none;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="B3tBt2Ysn_EMWluu0rf4-5" source="B3tBt2Ysn_EMWluu0rf4-74" target="B3tBt2Ysn_EMWluu0rf4-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="860" y="420" as="sourcePoint" />
+            <mxPoint x="910" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-7" value="Photographer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-800" y="380" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-9" value="&lt;div&gt;Digital Artist&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-800" y="480" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-11" value="Archivist" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-800" y="580" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-13" value="General User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-800" y="680" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B3tBt2Ysn_EMWluu0rf4-28" value="&lt;div&gt;Sorting Algorithm&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="410" width="30" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
