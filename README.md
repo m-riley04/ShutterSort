@@ -16,3 +16,6 @@ A photo sorting software that uses cutting edge technology, machine learning, an
 
 ## Meetings
 Meetings, agendas, and logs can be found in the project [Wiki](https://github.com/m-riley04/ShutterSort/wiki).
+
+## Artifacts
+Most if not all of the required artifacts for the project (Project Management Plan, SRS, etc.) can be found within the "documentation" folder [here](documentation).
