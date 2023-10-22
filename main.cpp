@@ -19,7 +19,7 @@ class Sort{
                     std::string extension = entry.path().extension().string(); // get the extension of the file 
                     
                     if (extension != ".jpg" && extension != ".png" && extension != ".bmp"){ // checks that the file is a photo
-                        std::filesystem::rename(entry.path(), miscDirectory + "/" + file); // moves the file that is not a photo to a different directory
+                        std::filesystem::rename(entry.path(), miscDirectory + "\" + file); // moves the file that is not a photo to a different directory
                         std::cout << "Moved the non-images: " << file << std::endl;
                     }
                 }
