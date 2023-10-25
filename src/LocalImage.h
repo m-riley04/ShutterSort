@@ -1,10 +1,11 @@
 #ifndef LOCALIMAGE
 #define LOCALIMAGE
 
-#include <string>
+#include <filesystem>
+#include <cstring>
 class LocalImage {
     private:
-        std::string path;
+        std::filesystem::path path;
         std::string tag;
 
     public:
