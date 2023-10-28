@@ -4,6 +4,7 @@
 #include <filesystem>
 #include "Sorter.h"
 
+// Sorts files other than images to a miscellaneous directory
 Sorter::sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory){
 
     for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(origionalDirectory)){ // A "for each" loop that iterates through each entry
