@@ -32,11 +32,6 @@ class Sort{
 
 
 int main(){
-    // Initialize 
-    fs::path anchorDirectory("C:\\Users\\vex10\\Desktop\\TestingDirectory\\newimg.png");
-
-    LocalImage image(anchorDirectory);
-    
 
     return 0;
 }
