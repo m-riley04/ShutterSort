@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream> 
 #include <string> 
-#include <filesystem> 
+#include <filesystem>
+#include "Sorter.h"
 
-
-void sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory){
+Sorter::sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory){
 
     for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(origionalDirectory)){ // A "for each" loop that iterates through each entry
 
