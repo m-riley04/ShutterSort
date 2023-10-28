@@ -12,7 +12,6 @@ LocalImage::LocalImage() {
 // Parameterized constructor
 LocalImage::LocalImage(std::filesystem::path &p) {
     path = p;
-    printf("Hello world!");
 }
 
 std::filesystem::path LocalImage::getPath() {
