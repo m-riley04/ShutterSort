@@ -3,8 +3,15 @@
 //#include <exiv2/exiv2.hpp>
 #include "LocalImage.h"
 
-LocalImage::LocalImage(std::filesystem::path &p) : path(p) {
+// Default constructor
+LocalImage::LocalImage() {
 
+    path = std::filesystem::path();
+}
+
+// Parameterized constructor
+LocalImage::LocalImage(std::filesystem::path &p) {
+    path = p;
     printf("Hello world!");
 }
 
