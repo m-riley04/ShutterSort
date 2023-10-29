@@ -8,8 +8,8 @@
 
 class Sorter {
     public:
-        /*Returns the filesystem::path object for the image*/
-        void sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory){};
+        /* Returns the filesystem::path object for the image */
+        void sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory);
 };
 
 #endif

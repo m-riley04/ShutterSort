@@ -13,7 +13,10 @@ class LocalImage {
         /* Default constructor for the LocalImage class*/
         LocalImage();
 
-        /* Parameterized constructor for the LocalImage class*/
+        /* Parameterized constructor for the LocalImage class using filesystem::path*/
+        LocalImage(std::string &p);
+
+        /* Parameterized constructor for the LocalImage class using filesystem::path*/
         LocalImage(std::filesystem::path &p);
 
         /*Returns the filesystem::path object for the image*/
