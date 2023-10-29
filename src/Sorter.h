@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fstream> 
-#include <string> 
+#include <string>
 #include <filesystem>
 
 class Sorter {
