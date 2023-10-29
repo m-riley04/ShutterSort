@@ -1,8 +1,8 @@
-#include "LocalImage.h"
-#include "Sorter.h"
+#include "localimage.h"
+#include "sorter.h"
 
 int main(){
-    
+
 
     return 0;
 }
