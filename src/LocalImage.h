@@ -3,7 +3,7 @@
 
 #include <filesystem>
 #include <cstring>
-//#include <exiv2/exiv2.h>
+//#include <exiv2/exiv2.h> // Exiv2 is having errors within the Docker container, so I am commenting out Exiv2 segments for now.
 class LocalImage {
     private:
         std::filesystem::path path;
