@@ -10,20 +10,23 @@ class LocalImage {
         //Exiv2::Image image;
 
     public:
-        /* Default constructor for the LocalImage class*/
+        // Constructor for the LocalImage class
         LocalImage();
-
-        /* Parameterized constructor for the LocalImage class using filesystem::path*/
+        LocalImage(std::filesystem::path &p);
         LocalImage(std::string &p);
 
-        /* Parameterized constructor for the LocalImage class using filesystem::path*/
-        LocalImage(std::filesystem::path &p);
-
-        /*Returns the filesystem::path object for the image*/
+        /* --- GETTERS --- */
+        // Returns the path to the image file 
         std::filesystem::path getPath();
 
-        /*Returns an Exiv2::Image object for the image*/
-        //Exiv2::Image getImage(){};
+        // Returns the Exiv2::Image object
+        //Exiv2::Image getImage();
+
+        /* --- SETTERS ---*/
+        // Sets the path to the image file
+        void setPath(std::filesystem::path &path);
+        void setPath(std::string &path);
+        void setPath(char path[]);
 };
 
 #endif
