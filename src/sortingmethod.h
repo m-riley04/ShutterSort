@@ -3,8 +3,8 @@
 
 #include <string>
 
-#define DISABLED 0;
-#define ENABLED 1;
+#define DISABLED 0
+#define ENABLED 1
 
 class SortingMethod {
     private:
