@@ -1,40 +1,41 @@
 #include <filesystem>
 #include <cstring>
-//#include <exiv2/exiv2.hpp> // Exiv2 is having errors within the Docker container, so I am commenting out Exiv2 segments for now.
 
 #include "localimage.h"
 
 // Default constructor
 LocalImage::LocalImage() {}
 
-// Parameterized constructor using filesystem::path
-LocalImage::LocalImage(std::filesystem::path &p) {
-    path = p;
-}
-
 // Parameterized constructor using std::string
-LocalImage::LocalImage(std::string &p) {
-    path = std::filesystem::path(p);
+LocalImage::LocalImage(std::string path) {
+    _path = path;
+
+    _metadata.load(path);
 }
 
 /* --- GETTERS --- */
 // Returns a filesystem::path object
-std::filesystem::path LocalImage::getPath() {
-    return path;
+std::string LocalImage::getPath() {
+    return _path;
+}
+
+// Returns a Metadata object
+Metadata LocalImage::getMetadata() {
+    return _metadata;
 }
 
 /* --- SETTERS --- */
-// Set the path variable given a filesystem::path object
-void LocalImage::setPath(std::filesystem::path &path) {
-    path = path;
-}
-
 // Set the path variable given a string
-void LocalImage::setPath(std::filesystem::path &path) {
-
+void LocalImage::setPath(std::string &path) {
+    _path = path;
 }
 
 // Set the path variable given an array of characters (string)
 void LocalImage::setPath(char path[]) {
+    _path = std::string(path);
+}
 
+// Sets the metadata of the image using a Metadata object
+void LocalImage::setMetadata(Metadata metadata) {
+    _metadata = metadata;
 }

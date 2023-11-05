@@ -3,30 +3,32 @@
 
 #include <filesystem>
 #include <cstring>
-//#include <exiv2/exiv2.h> // Exiv2 is having errors within the Docker container, so I am commenting out Exiv2 segments for now.
+#include "metadata.h"
+
 class LocalImage {
     private:
-        std::filesystem::path path;
-        //Exiv2::Image image;
+        std::string _path;
+        Metadata _metadata;
 
     public:
         // Constructor for the LocalImage class
         LocalImage();
-        LocalImage(std::filesystem::path &p);
-        LocalImage(std::string &p);
+        LocalImage(std::string path);
 
         /* --- GETTERS --- */
         // Returns the path to the image file 
-        std::filesystem::path getPath();
+        std::string getPath();
 
-        // Returns the Exiv2::Image object
-        //Exiv2::Image getImage();
+        // Returns the metadata object
+        Metadata getMetadata();
 
         /* --- SETTERS ---*/
         // Sets the path to the image file
-        void setPath(std::filesystem::path &path);
-        void setPath(std::string &path);
+        void setPath(std::string& path);
         void setPath(char path[]);
+
+        // Sets the metadata
+        void setMetadata(Metadata metadata);
 };
 
 #endif
