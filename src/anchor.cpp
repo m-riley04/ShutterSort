@@ -1,5 +1,6 @@
 #include <thread>
 #include <Windows.h>
+#include <iostream>
 #include "anchor.h"
 
 using namespace std;
@@ -9,9 +10,9 @@ namespace fs = filesystem;
 void Anchor::update()
 {
     // Check if the directory is empty. If it is, do nothing.
-    if (fs::is_empty(input))
+    if (fs::is_empty(directory))
     {
-        break;
+        return;
     }
 
     /* Move all non-image entries to the miscellaneous directory (Colin's function)*/
@@ -23,7 +24,7 @@ void Anchor::update()
         fs::path name = dir_entry.filename();
 
         // Print file that is being moved
-        cout << "File found: " << name << endl;
+        std::cout << "File found: " << name << endl;
 
         // Create LocalImage object 
         //Exiv2::Image exivImage = Exiv2::ImageFactory(dir_entry);
@@ -38,14 +39,14 @@ void Anchor::update()
         //outputFolder /= name;
 
         // Concat sorted folder to main output folder
-        newOutput /= output
+        //newOutput /= output;
 
         // Move file to the main output folder
-        fs::rename(dir_entry, newOutput);
+        //fs::rename(dir_entry, newOutput);
     }
 
     // Tell the user it is finished updating
-    cout << "Updated directory." << input.string() << endl;
+    //cout << "Updated directory." << input.string() << endl;
 }
 
 /*// Iterates through a given input and output directory and calls on the sorter to sort. 
