@@ -18,6 +18,7 @@ void Sorter::sortToMisc(const std::string& origionalDirectory, const std::string
     }
 }
 
+/*
 int main(){
     std::string origionalDirectory; //This is the directory that contains all files 
     std::string miscDirectory; // Directory to put miscellaneous files 
@@ -27,3 +28,4 @@ int main(){
 
     return 0;
 }
+*/
