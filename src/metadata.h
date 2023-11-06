@@ -19,8 +19,8 @@ class Metadata {
         std::string get(const std::string& key);
 
         // Loads a metadata with values
-        void Metadata::load(std::string path);
-        void Metadata::load(Exiv2::ExifData data);
+        void load(std::string path);
+        void load(Exiv2::ExifData data);
 
         // Checks if a metadata key exists.
         bool contains(const std::string& key);
