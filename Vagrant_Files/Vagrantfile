@@ -1,0 +1,10 @@
+ENV['LC_ALL'] = 'en_US.UTF-8'
+
+Vagrant.configure("2") do |config|
+	config.vm.synced_folder "/Users/rylandedwards/Documents/GitHub/EECS348-Project", "/shared/EECS368_Project"
+	config.vm.network "forwarded_port", guest: 22, host: 22
+	config.vm.provider "docker" do |d|
+		d.build_dir = "."
+		d.name = "ShutterSort_Env"
+	end
+end
