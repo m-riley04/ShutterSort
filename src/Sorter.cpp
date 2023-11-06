@@ -1,4 +1,4 @@
-#include "sorter.h"
+#include "Sorter.h"
 
 // Sorts files other than images to a miscellaneous directory
 void Sorter::sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory) {
@@ -17,6 +17,44 @@ void Sorter::sortToMisc(const std::string& origionalDirectory, const std::string
         }
     }
 }
+
+void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& destPath){
+    std::filesystem::path sourceDir(sourcePath);
+    std::filesystem::path destDir(destPath);
+
+    try {
+        
+        //Check if the directory exists
+        if (std::filesystem::exists(sourceDir) && std::filesystem::is_directory(sourceDir)) {
+
+            std::filesystem::create_directory(destDir); //Create destination directory if it doesn't exist
+
+            //Iterate through the files in the source directory
+            for (const auto& entry : std::filesystem::directory_iterator(sourceDir)) {
+
+                if (std::filesystem::is_regular_file(entry)) {
+                    //get the files name 
+                    std::filesystem::path sourceFile = entry.path(); 
+                    //append the files name to the destination directory
+                    std::filesystem::path destFile = destDir / sourceFile.filename(); 
+
+                    //copy file to the destination directory
+                    std::filesystem::copy_file(sourceFile, destFile, std::filesystem::copy_options::overwrite_existing);
+
+                    std::cout << "Copied: " << sourceFile << " to " << destFile << std::endl;
+                }
+            }
+
+            std::cout << "All files copied successfully." << std::endl;
+
+        } else {
+            std::cerr << "Source directory doesn't exist or is not a directory." << std::endl;
+        }
+    } catch (const std::exception& ex) {
+        std::cerr << "Error: " << ex.what() << std::endl;
+    }
+}
+
 
 /*
 int main(){
