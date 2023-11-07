@@ -11,6 +11,8 @@ class Sorter {
         /* Returns the filesystem::path object for the image */
         void sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory);
         void makeTempCopy(const std::string& sourcePath, const std::string& destPath);
+        void deleteTempCopy(const std::string& destPath);
+    
 };
 
 #endif
