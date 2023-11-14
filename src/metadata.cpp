@@ -19,7 +19,7 @@ std::string Metadata::get(const std::string& key) {
 void Metadata::load(std::string path) {
     // Read metadata of specific image
     auto image = Exiv2::ImageFactory::open(path);
-    if (!image) {
+    if (image.get() == nullptr) {
         std::cerr << "Error opening image file!" << std::endl;
         return;
     }
