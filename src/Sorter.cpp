@@ -1,4 +1,6 @@
 #include "Sorter.h"
+#include <exiv2/exiv2.hpp>
+
 
 // Sorts files other than images to a miscellaneous directory
 void Sorter::sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory) {
@@ -55,7 +57,7 @@ void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& dest
     }
 }
 
-void deleteTempCopy(const std::string& destPath){
+void Sorter::deleteTempCopy(const std::string& destPath){
     std::filesystem::path tempDir(destPath);
      for (const auto& entry : std::filesystem::directory_iterator(tempDir)) {
         try {
@@ -66,6 +68,88 @@ void deleteTempCopy(const std::string& destPath){
         }
 
      }
+}
+void Sorter::sort(const std::string& filename, int minRange, int maxRange){
+    try {
+        // Open the image file and read metadata
+        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filename);
+        if (image.get() == 0) {
+            std::cerr << "Error opening image file: " << filename << std::endl;
+            return false;
+        }
+
+        image->readMetadata();
+
+        // Get the metadata
+        Exiv2::ExifData &exifData = image->exifData();
+        
+        // Check if the integer is in the specified range
+        if (exifData.empty()) {
+            std::cerr << "No metadata found in the image: " << filename << std::endl;
+            return false;
+        } else {
+            Exiv2::ExifData::const_iterator it = exifData.begin();
+            Exiv2::ExifData::const_iterator end = exifData.end();
+
+            for (; it != end; ++it) {
+                try {
+                    int value = it->toLong();
+                    if (value >= minRange && value <= maxRange) {
+                        std::cout << "Found an integer in the range [" << minRange << ", " << maxRange << "] in metadata of " << filename << std::endl;
+                        return true;
+                    }
+                } catch (Exiv2::BasicError<char>& e) {
+                    // Handle non-integer values if necessary
+                }
+            }
+        }
+    } catch (Exiv2::AnyError& e) {
+        std::cerr << "Caught Exiv2 exception: " << e.what() << std::endl;
+        return false;
+    }
+
+    std::cout << "Did not find an integer in the range [" << minRange << ", " << maxRange << "] in metadata of " << filename << std::endl;
+    return false;
+}
+
+
+void Sorter::sort(const std::string& filename, const std::string& searchString){
+    try {
+        // -- Open the image file and read metadata -- 
+        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filename);
+        if (image.get() == 0) {
+            std::cerr << "Error opening image file: " << filename << std::endl;
+            return false;
+        }
+
+        image->readMetadata();
+
+        // -- Get the metadata -- 
+        Exiv2::ExifData &exifData = image->exifData();
+        
+        // -- Check if the searchString is in the metadata -- 
+        if (exifData.empty()) {
+            std::cerr << "No metadata found in the image: " << filename << std::endl;
+            return false;
+        } else {
+            Exiv2::ExifData::const_iterator it = exifData.begin();
+            Exiv2::ExifData::const_iterator end = exifData.end();
+
+            for (; it != end; ++it) {
+                std::string value = it->toString();
+                if (value.find(searchString) != std::string::npos) {
+                    std::cout << "Found '" << searchString << "' in metadata of " << filename << std::endl;
+                    return true;
+                }
+            }
+        }
+    } catch (Exiv2::AnyError& e) {
+        std::cerr << "Caught Exiv2 exception: " << e.what() << std::endl;
+        return false;
+    }
+
+    std::cout << "Did not find '" << searchString << "' in metadata of " << filename << std::endl;
+    return false;
 }
 /*
 int main(){
