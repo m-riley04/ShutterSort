@@ -1,5 +1,4 @@
 #include <thread>
-#include <Windows.h>
 #include <iostream>
 #include "anchor.h"
 
