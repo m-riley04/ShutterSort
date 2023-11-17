@@ -12,11 +12,11 @@ class Sorter {
         void sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory);
         void makeTempCopy(const std::string& sourcePath, const std::string& destPath);
         void deleteTempCopy(const std::string& destPath);
-        void sort(const std::string& filename, int minRange, int maxRange);//int 
-        void sort(const std::string& filename, const std::string& searchString);//string
-        void sort();//float
-        void sort();//date
-        void sort();//time
+        //bool sort(const std::string& filename, int minRange, int maxRange);//int 
+        //bool sort(const std::string& filename, const std::string& searchString);//string
+        //void sort();//float
+        //void sort();//date
+        //void sort();//time
 
 };
 

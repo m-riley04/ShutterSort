@@ -69,7 +69,8 @@ void Sorter::deleteTempCopy(const std::string& destPath){
 
      }
 }
-void Sorter::sort(const std::string& filename, int minRange, int maxRange){
+/*
+bool Sorter::sort(const std::string& filename, int minRange, int maxRange) {
     try {
         // Open the image file and read metadata
         Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filename);
@@ -113,7 +114,7 @@ void Sorter::sort(const std::string& filename, int minRange, int maxRange){
 }
 
 
-void Sorter::sort(const std::string& filename, const std::string& searchString){
+bool Sorter::sort(const std::string& filename, const std::string& searchString){
     try {
         // -- Open the image file and read metadata -- 
         Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filename);
@@ -151,6 +152,7 @@ void Sorter::sort(const std::string& filename, const std::string& searchString){
     std::cout << "Did not find '" << searchString << "' in metadata of " << filename << std::endl;
     return false;
 }
+*/
 /*
 int main(){
     std::string origionalDirectory; //This is the directory that contains all files 
