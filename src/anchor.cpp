@@ -1,9 +1,15 @@
 #include <thread>
 #include <iostream>
 #include "anchor.h"
+#include "localimage.h"
+//#include "sorter.h"
 
 using namespace std;
 namespace fs = filesystem;
+
+Anchor::Anchor() {
+
+}
 
 // Iterates through the anchor directory, checks for any changes, and calls on the sorter to sort if there are.
 void Anchor::update()
@@ -26,10 +32,10 @@ void Anchor::update()
         std::cout << "File found: " << name << endl;
 
         // Create LocalImage object 
-        //Exiv2::Image exivImage = Exiv2::ImageFactory(dir_entry);
-        //LocalImage image(dir_entry, exivImage)
+        LocalImage image(dir_entry);
 
-        // Call on the sorter
+        // Call on the sorter to check all sorting methods
+        //this->sorter;
 
         // Get the sorted folder name
         //fs::path output = output;

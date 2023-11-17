@@ -2,12 +2,14 @@
 #define ANCHOR_H
 
 #include <filesystem>
+#include "sorter.h"
 
 class Anchor {
     private:
         std::filesystem::path directory;
         std::filesystem::path outputDirectory;
         int updateInterval = 1000;
+        Sorter sorter;
 
     public:
         // Default constructor
