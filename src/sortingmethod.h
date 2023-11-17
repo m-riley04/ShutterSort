@@ -2,6 +2,7 @@
 #define SORTINGMETHOD_H
 
 #include <string>
+#include <functional>
 
 #define DISABLED 0
 #define ENABLED 1
@@ -13,11 +14,12 @@ class SortingMethod {
         int min;
         int max;
         int status;
+        std::function<bool()> method;
 
     public:
         // Constructor for the SortingMethod class
         SortingMethod();
-        SortingMethod(std::string &name, std::string &tag, int min, int max);
+        SortingMethod(std::string name, std::string tag, int min, int max, std::function<bool()> method);
 
         /* --- GETTERS --- */
         // Returns the name of the folder that this sotring method's metadata tag belongs to
@@ -38,6 +40,9 @@ class SortingMethod {
         /* Returns the status of the sorting method. 0 = disabled, 1 = enabled */
         int getStatus();
 
+        // Returns the sorting function
+        std::function<bool()> getMethod();
+
         /* --- SETTERS --- */
         // Sets the name of the sorting method (and the corresponding folder)
         void setName(std::string name);
@@ -53,6 +58,9 @@ class SortingMethod {
 
         // Sets the status (0 = disabled, 1 = enabled)
         void setStatus(int status);
+
+        // Sets the sorting function
+        void setMethod(std::function<bool()> method);
 };
 
 #endif
