@@ -7,13 +7,14 @@
 
 class LocalImage {
     private:
-        std::string _path;
-        Metadata _metadata;
+        std::string path;
+        Metadata metadata;
 
     public:
         // Constructor for the LocalImage class
         LocalImage();
         LocalImage(std::string path);
+        LocalImage(std::filesystem::path path);
 
         /* --- GETTERS --- */
         // Returns the path to the image file 
