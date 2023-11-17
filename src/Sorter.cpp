@@ -59,15 +59,12 @@ void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& dest
 
 void Sorter::deleteTempCopy(const std::string& destPath){
     std::filesystem::path tempDir(destPath);
-     for (const auto& entry : std::filesystem::directory_iterator(tempDir)) {
         try {
         std::filesystem::remove_all(tempDir); // Deletes the directory and its contents
         } 
         catch (const std::filesystem::filesystem_error& e) {
         std::cerr << "Error deleting directory: " << e.what() << std::endl;
         }
-
-     }
 }
 
 void Sorter::sort(Metadata data, int minRange, int maxRange, const std::string & key){
