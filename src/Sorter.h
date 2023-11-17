@@ -5,6 +5,7 @@
 #include <fstream> 
 #include <string>
 #include <filesystem>
+#include "metadata.cpp"
 
 class Sorter {
     public:
@@ -12,11 +13,11 @@ class Sorter {
         void sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory);
         void makeTempCopy(const std::string& sourcePath, const std::string& destPath);
         void deleteTempCopy(const std::string& destPath);
-        //bool sort(const std::string& filename, int minRange, int maxRange);//int 
-        //bool sort(const std::string& filename, const std::string& searchString);//string
-        //void sort();//float
-        //void sort();//date
-        //void sort();//time
+        void sort(Metadata data, int minRange, int maxRange,const std::string & key);//int 
+        void sort(Metadata data, float minRange, float maxRange, const std::string & key);//float
+        void sort(Metadata data, const std::string& str, const std::string & key);//string
+        void sort();//date
+        void sort();//time
 
 };
 
