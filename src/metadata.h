@@ -18,6 +18,9 @@ class Metadata {
         // Retrieves a metadata value, returns an empty string if not found.
         std::string get(const std::string& key);
 
+        // Helper for load() function
+        void load_helper(Exiv2::ExifData data);
+
         // Loads a metadata with values
         void load(std::string path);
         void load(Exiv2::ExifData data);
