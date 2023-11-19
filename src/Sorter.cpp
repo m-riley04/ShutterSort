@@ -3,20 +3,24 @@
 
 
 // Sorts files other than images to a miscellaneous directory
-void Sorter::sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory) {
+void Sorter::sortToMisc(const std::string& originalDirectory, const std::string& miscDirectory) {
+    int filesMoved = 0; // Counter for the number of files moved
 
-    for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(origionalDirectory)){ // A "for each" loop that iterates through each entry
+    for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(originalDirectory)) {
+        if (entry.is_regular_file()) {
+            std::string file = entry.path().filename().string();
+            std::string extension = entry.path().extension().string();
 
-        if (entry.is_regular_file()){  // <filesystem> function that checks if the file status is normal
-
-            std::string file = entry.path().filename().string(); // gets the name of the file
-            std::string extension = entry.path().extension().string(); // get the extension of the file 
-            
-            if (extension != ".jpg" && extension != ".png" && extension != ".bmp"){ // checks that the file is a photo
-                std::filesystem::rename(entry.path(), miscDirectory + "/" + file); // moves the file that is not a photo to a different directory
+            if (extension != ".jpg" && extension != ".png" && extension != ".bmp") {
+                std::filesystem::rename(entry.path(), miscDirectory + "/" + file);
                 std::cout << "Moved the non-images: " << file << std::endl;
+                filesMoved++;
             }
         }
+    }
+
+    if (filesMoved == 0) {
+        std::cout << "No files were moved." << std::endl;
     }
 }
 
