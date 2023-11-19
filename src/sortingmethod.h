@@ -14,12 +14,12 @@ class SortingMethod {
         int min;
         int max;
         int status;
-        std::function<bool()> method;
+        std::function<bool(int, int, int)> method;
 
     public:
         // Constructor for the SortingMethod class
         SortingMethod();
-        SortingMethod(std::string name, std::string tag, int min, int max, std::function<bool()> method);
+        SortingMethod(std::string name, std::string tag, int min, int max, std::function<bool(int, int, int)> method);
 
         /* --- GETTERS --- */
         // Returns the name of the folder that this sotring method's metadata tag belongs to
@@ -41,7 +41,7 @@ class SortingMethod {
         int getStatus();
 
         // Returns the sorting function
-        std::function<bool()> getMethod();
+        std::function<bool(int, int, int)>& getMethod();
 
         /* --- SETTERS --- */
         // Sets the name of the sorting method (and the corresponding folder)
@@ -60,7 +60,7 @@ class SortingMethod {
         void setStatus(int status);
 
         // Sets the sorting function
-        void setMethod(std::function<bool()> method);
+        void setMethod(std::function<bool(int, int, int)> method);
 };
 
 #endif

@@ -8,37 +8,37 @@ SortingMethod::SortingMethod()
 }
 
 // Parameterized constructor
-SortingMethod::SortingMethod(std::string name, std::string tag, int min, int max, std::function<bool()> method)
+SortingMethod::SortingMethod(std::string name, std::string tag, int min, int max, std::function<bool(int, int, int)> method)
     : name(name), tag(tag), min(min), max(max), status(DISABLED), method(method) {
 }
 
 /* --- GETTERS --- */
 std::string SortingMethod::getName() {
-    return name;
+    return this->name;
 }
 
 std::string SortingMethod::getTag() {
-    return tag;
+    return this->tag;
 }
 
 int SortingMethod::getMin() {
-    return min;
+    return this->min;
 }
 
 int SortingMethod::getMax() {
-    return max;
+    return this->max;
 }
 
 int* SortingMethod::getBounds() {
-    static int bounds[2] = {min, max};
+    static int bounds[2] = {this->min, this->max};
     return bounds;
 }
 
 int SortingMethod::getStatus() {
-    return status;
+    return this->status;
 }
 
-std::function<bool()> SortingMethod::getMethod() {
+std::function<bool(int, int, int)>& SortingMethod::getMethod() {
     return this->method;
 }
 
@@ -63,6 +63,6 @@ void SortingMethod::setStatus(int status) {
     this->status = status;
 }
 
-void SortingMethod::setMethod(std::function<bool()> method) {
+void SortingMethod::setMethod(std::function<bool(int, int, int)> method) {
     this->method = method;
 }
