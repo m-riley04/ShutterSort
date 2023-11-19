@@ -52,7 +52,8 @@ void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& dest
         } else {
             std::cerr << "Source directory doesn't exist or is not a directory." << std::endl;
         }
-    } catch (const std::exception& ex) {
+    }
+    catch (const std::exception& ex) {
         std::cerr << "Error: " << ex.what() << std::endl;
     }
 }
@@ -67,70 +68,50 @@ void Sorter::deleteTempCopy(const std::string& destPath){
         }
 }
 
-void Sorter::sort(Metadata data, int minRange, int maxRange, const std::string & key){
-    if (data.get() == "") {
-        std::cerr << "Error opening image file: " << filename << std::endl;
-        return false;
-    }
-       
-    if (data.contains(key)==false) {
-        std::cerr << "No metadata found in the image: " << filename << std::endl;
-        return false;
+//bool Sorter::sort(int target, int minRange, int maxRange) {
+//    if (minRange <= target <= maxRange) { return true; }
+//    return false;
+//}
+//
+//bool Sorter::sort(Metadata data, float minRange, float maxRange, const std::string & key){
+//    if (data.get() == "") {
+//        std::cerr << "Error opening image file: " << filename << std::endl;
+//        return false;
+//    }
+//       
+//    if (data.contains(key)==false) {
+//        std::cerr << "No metadata found in the image: " << filename << std::endl;
+//        return false;
+//
+//    } else {
+//        meta = data.load();
+//        if (meta.get(key) >= minRange && meta.get(key) <= maxRange){
+//            //put the file into the sorted directory 
+//        }
+//    }
+//}
+//
+//
+//
+//bool Sorter::sort(Metadata data, const std::string& str, const std::string & key){
+//    if (data.get() == "") {
+//        std::cerr << "Error opening image file: " << filename << std::endl;
+//        return false;
+//    }
+//       
+//    if (data.contains(key)==false) {
+//        std::cerr << "No metadata found in the image: " << filename << std::endl;
+//        return false;
+//
+//    } else {
+//        meta = data.load();
+//        if (meta.get(key) == str){
+//            //put the file into the sorted directory 
+//        }
+//    }
+//}
 
-    } else {
-        meta = data.load();
-        if (meta.get(key) >= minRange && meta.get(key) <= maxRange){
-            //put the file into the sorted directory 
-        }
-    }
+// Returns the std::list of sorting methods
+std::list<SortingMethod>& Sorter::getMethods() {
+    return this->methods;
 }
-
-void Sorter::sort(Metadata data, float minRange, float maxRange, const std::string & key){
-    if (data.get() == "") {
-        std::cerr << "Error opening image file: " << filename << std::endl;
-        return false;
-    }
-       
-    if (data.contains(key)==false) {
-        std::cerr << "No metadata found in the image: " << filename << std::endl;
-        return false;
-
-    } else {
-        meta = data.load();
-        if (meta.get(key) >= minRange && meta.get(key) <= maxRange){
-            //put the file into the sorted directory 
-        }
-    }
-}
-
-
-
-void Sorter::sort(Metadata data, const std::string& str, const std::string & key){
-    if (data.get() == "") {
-        std::cerr << "Error opening image file: " << filename << std::endl;
-        return false;
-    }
-       
-    if (data.contains(key)==false) {
-        std::cerr << "No metadata found in the image: " << filename << std::endl;
-        return false;
-
-    } else {
-        meta = data.load();
-        if (meta.get(key) == str){
-            //put the file into the sorted directory 
-        }
-    }
-}
-*/
-/*
-int main(){
-    std::string origionalDirectory; //This is the directory that contains all files 
-    std::string miscDirectory; // Directory to put miscellaneous files 
-
-    Sorter sorter;
-    sorter.sortToMisc(origionalDirectory, miscDirectory);
-
-    return 0;
-}
-*/
