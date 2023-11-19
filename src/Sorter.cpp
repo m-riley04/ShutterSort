@@ -3,20 +3,24 @@
 
 
 // Sorts files other than images to a miscellaneous directory
-void Sorter::sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory) {
+void Sorter::sortToMisc(const std::string& originalDirectory, const std::string& miscDirectory) {
+    int filesMoved = 0; // Counter for the number of files moved
 
-    for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(origionalDirectory)){ // A "for each" loop that iterates through each entry
+    for (std::filesystem::directory_entry entry : std::filesystem::directory_iterator(originalDirectory)) {
+        if (entry.is_regular_file()) {
+            std::string file = entry.path().filename().string();
+            std::string extension = entry.path().extension().string();
 
-        if (entry.is_regular_file()){  // <filesystem> function that checks if the file status is normal
-
-            std::string file = entry.path().filename().string(); // gets the name of the file
-            std::string extension = entry.path().extension().string(); // get the extension of the file 
-            
-            if (extension != ".jpg" && extension != ".png" && extension != ".bmp"){ // checks that the file is a photo
-                std::filesystem::rename(entry.path(), miscDirectory + "/" + file); // moves the file that is not a photo to a different directory
+            if (extension != ".jpg" && extension != ".png" && extension != ".bmp") {
+                std::filesystem::rename(entry.path(), miscDirectory + "/" + file);
                 std::cout << "Moved the non-images: " << file << std::endl;
+                filesMoved++;
             }
         }
+    }
+
+    if (filesMoved == 0) {
+        std::cout << "No files were moved." << std::endl;
     }
 }
 
@@ -31,6 +35,7 @@ void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& dest
 
             std::filesystem::create_directory(destDir); //Create destination directory if it doesn't exist
 
+            int filesCopied = 0;
             //Iterate through the files in the source directory
             for (const auto& entry : std::filesystem::directory_iterator(sourceDir)) {
 
@@ -44,121 +49,78 @@ void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& dest
                     std::filesystem::copy_file(sourceFile, destFile, std::filesystem::copy_options::overwrite_existing);
 
                     std::cout << "Copied: " << sourceFile << " to " << destFile << std::endl;
+                    filesCopied++;
                 }
             }
 
-            std::cout << "All files copied successfully." << std::endl;
+            if(filesCopied != 0)
+                std::cout << "All files copied successfully." << std::endl;
+            else
+                std::cout << "No files copied" << std::endl;
 
         } else {
             std::cerr << "Source directory doesn't exist or is not a directory." << std::endl;
         }
-    } catch (const std::exception& ex) {
+    }
+    catch (const std::exception& ex) {
         std::cerr << "Error: " << ex.what() << std::endl;
     }
 }
 
 void Sorter::deleteTempCopy(const std::string& destPath){
     std::filesystem::path tempDir(destPath);
-     for (const auto& entry : std::filesystem::directory_iterator(tempDir)) {
         try {
         std::filesystem::remove_all(tempDir); // Deletes the directory and its contents
         } 
         catch (const std::filesystem::filesystem_error& e) {
         std::cerr << "Error deleting directory: " << e.what() << std::endl;
         }
-
-     }
-}
-void Sorter::sort(const std::string& filename, int minRange, int maxRange){
-    try {
-        // Open the image file and read metadata
-        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filename);
-        if (image.get() == 0) {
-            std::cerr << "Error opening image file: " << filename << std::endl;
-            return false;
-        }
-
-        image->readMetadata();
-
-        // Get the metadata
-        Exiv2::ExifData &exifData = image->exifData();
-        
-        // Check if the integer is in the specified range
-        if (exifData.empty()) {
-            std::cerr << "No metadata found in the image: " << filename << std::endl;
-            return false;
-        } else {
-            Exiv2::ExifData::const_iterator it = exifData.begin();
-            Exiv2::ExifData::const_iterator end = exifData.end();
-
-            for (; it != end; ++it) {
-                try {
-                    int value = it->toLong();
-                    if (value >= minRange && value <= maxRange) {
-                        std::cout << "Found an integer in the range [" << minRange << ", " << maxRange << "] in metadata of " << filename << std::endl;
-                        return true;
-                    }
-                } catch (Exiv2::BasicError<char>& e) {
-                    // Handle non-integer values if necessary
-                }
-            }
-        }
-    } catch (Exiv2::AnyError& e) {
-        std::cerr << "Caught Exiv2 exception: " << e.what() << std::endl;
-        return false;
-    }
-
-    std::cout << "Did not find an integer in the range [" << minRange << ", " << maxRange << "] in metadata of " << filename << std::endl;
-    return false;
 }
 
+//bool Sorter::sort(int target, int minRange, int maxRange) {
+//    if (minRange <= target <= maxRange) { return true; }
+//    return false;
+//}
+//
+//bool Sorter::sort(Metadata data, float minRange, float maxRange, const std::string & key){
+//    if (data.get() == "") {
+//        std::cerr << "Error opening image file: " << filename << std::endl;
+//        return false;
+//    }
+//       
+//    if (data.contains(key)==false) {
+//        std::cerr << "No metadata found in the image: " << filename << std::endl;
+//        return false;
+//
+//    } else {
+//        meta = data.load();
+//        if (meta.get(key) >= minRange && meta.get(key) <= maxRange){
+//            //put the file into the sorted directory 
+//        }
+//    }
+//}
+//
+//
+//
+//bool Sorter::sort(Metadata data, const std::string& str, const std::string & key){
+//    if (data.get() == "") {
+//        std::cerr << "Error opening image file: " << filename << std::endl;
+//        return false;
+//    }
+//       
+//    if (data.contains(key)==false) {
+//        std::cerr << "No metadata found in the image: " << filename << std::endl;
+//        return false;
+//
+//    } else {
+//        meta = data.load();
+//        if (meta.get(key) == str){
+//            //put the file into the sorted directory 
+//        }
+//    }
+//}
 
-void Sorter::sort(const std::string& filename, const std::string& searchString){
-    try {
-        // -- Open the image file and read metadata -- 
-        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(filename);
-        if (image.get() == 0) {
-            std::cerr << "Error opening image file: " << filename << std::endl;
-            return false;
-        }
-
-        image->readMetadata();
-
-        // -- Get the metadata -- 
-        Exiv2::ExifData &exifData = image->exifData();
-        
-        // -- Check if the searchString is in the metadata -- 
-        if (exifData.empty()) {
-            std::cerr << "No metadata found in the image: " << filename << std::endl;
-            return false;
-        } else {
-            Exiv2::ExifData::const_iterator it = exifData.begin();
-            Exiv2::ExifData::const_iterator end = exifData.end();
-
-            for (; it != end; ++it) {
-                std::string value = it->toString();
-                if (value.find(searchString) != std::string::npos) {
-                    std::cout << "Found '" << searchString << "' in metadata of " << filename << std::endl;
-                    return true;
-                }
-            }
-        }
-    } catch (Exiv2::AnyError& e) {
-        std::cerr << "Caught Exiv2 exception: " << e.what() << std::endl;
-        return false;
-    }
-
-    std::cout << "Did not find '" << searchString << "' in metadata of " << filename << std::endl;
-    return false;
+// Returns the std::list of sorting methods
+std::list<SortingMethod>& Sorter::getMethods() {
+    return this->methods;
 }
-/*
-int main(){
-    std::string origionalDirectory; //This is the directory that contains all files 
-    std::string miscDirectory; // Directory to put miscellaneous files 
-
-    Sorter sorter;
-    sorter.sortToMisc(origionalDirectory, miscDirectory);
-
-    return 0;
-}
-*/

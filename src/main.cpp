@@ -14,11 +14,11 @@ int main(){
     printf("Hello, world!\n");
 
     // Get image path
-    std::string imgPath = "cat.jpg";
+    std::string imgPath = "TestCases/cat.jpg";
 
     // Load metadata object
     Metadata myMetadata;
-    myMetadata.load("cat.jpg");
+    myMetadata.load(imgPath);
     
     LocalImage image(imgPath);
     image.getMetadata().printAll();
