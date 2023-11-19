@@ -35,6 +35,7 @@ void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& dest
 
             std::filesystem::create_directory(destDir); //Create destination directory if it doesn't exist
 
+            int filesCopied = 0;
             //Iterate through the files in the source directory
             for (const auto& entry : std::filesystem::directory_iterator(sourceDir)) {
 
@@ -48,10 +49,14 @@ void Sorter::makeTempCopy(const std::string& sourcePath, const std::string& dest
                     std::filesystem::copy_file(sourceFile, destFile, std::filesystem::copy_options::overwrite_existing);
 
                     std::cout << "Copied: " << sourceFile << " to " << destFile << std::endl;
+                    filesCopied++;
                 }
             }
 
-            std::cout << "All files copied successfully." << std::endl;
+            if(filesCopied != 0)
+                std::cout << "All files copied successfully." << std::endl;
+            else
+                std::cout << "No files copied" << std::endl;
 
         } else {
             std::cerr << "Source directory doesn't exist or is not a directory." << std::endl;
