@@ -19,7 +19,7 @@ class Sorter {
         void sortToMisc(const std::string& origionalDirectory, const std::string& miscDirectory);
         void makeTempCopy(const std::string& sourcePath, const std::string& destPath);
         void deleteTempCopy(const std::string& destPath);
-        //bool sort(int target, int minRange, int maxRange);//int 
+        bool sort(int target, int minRange, int maxRange); // integer
         //bool sort(Metadata data, float minRange, float maxRange, const std::string & key);//float
         //bool sort(Metadata data, const std::string& str, const std::string & key);//string
         //bool sort();//date
