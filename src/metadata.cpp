@@ -140,7 +140,7 @@ void Metadata::load_helper(Exiv2::ExifData data) {
                     break;
                 case Exiv2::unsignedByte:
                     // Special handling for UCS-2 encoded byte values
-                    value = it->value().toString();//ucs2leToUtf8(parseUcs2String(it->value().toString()));
+                    value = ucs2leToUtf8(parseUcs2String(it->value().toString()));
                     break;
                 case Exiv2::asciiString:
                     // Handle ASCII strings directly
