@@ -1,9 +1,9 @@
-#include <thread>
-#include <iostream>
 #include "anchor.h"
 #include "localimage.h"
 #include "sorter.h"
 #include <string>
+#include <thread>
+#include <iostream>
 
 using namespace std;
 namespace fs = filesystem;
@@ -35,17 +35,17 @@ void Anchor::update()
         return;
     }
 
-    // Make a copy of all images within the folder
+    // TODO: Make a copy of all images within the folder
 
-    // Move all non-image entries to the miscellaneous directory
+    // TODO: Move all non-image entries to the miscellaneous directory
 
     // Loop through every file in the input directory with a directory_iterator
     for (fs::path const &dir_entry : std::filesystem::directory_iterator{directory}) {
         // Get the name of the current file
-        fs::path name = dir_entry.filename();
+        fs::path filename = dir_entry.filename();
 
         // Print file that is being moved
-        std::cout << "File found: " << name << endl;
+        std::cout << "File found: " << filename << endl;
 
         // Create LocalImage object to be loaded
         LocalImage image(dir_entry);
@@ -57,19 +57,34 @@ void Anchor::update()
         {
             // Print the current sorting method being checked
             std::cout << "Current Sorting Method: " << sortingMethod.getName() << std::endl;
-
-            // TODO - Check type (instead of only doing integers)
+ 
+            //----
+            //TODO - Check type from string (instead of only doing integers)
+            //----
 
             // Initialize the variables for sorting
             std::function<bool(int, int, int)> method = sortingMethod.getMethod();
+            string tag = sortingMethod.getTag();
+            string name = sortingMethod.getName();
             int min = sortingMethod.getMin();
             int max = sortingMethod.getMax();
-            int val = std::stoi(metadata.get(sortingMethod.getTag()));
+            int val;
 
+            // Check if tag exists in metadata
+            if (!metadata.contains(tag))
+            {
+                matches = false;
+                std::cout << "ERROR: Metadata for '" << name << "'does not contain tag '" << tag << "'." << std::endl;
+                break;
+            }
+            val = std::stoi(metadata.get(tag));
+
+
+            // Test the sorting function
             if (!method(val, min, max))
             {
                 matches = false;
-                std::cout << "Current Sorting Method: " << sortingMethod.getName() << std::endl;
+                std::cout << "Failed Sorting Method Test: " << name << std::endl;
                 break;
             }
         }
@@ -89,10 +104,11 @@ void Anchor::update()
         }
 
         // Concat file name to final output folder
-        output /= name;
+        output /= filename;
 
         // Move file to the main output folder
         fs::rename(dir_entry, output);
+        std::cout << "File '" << filename << "' was moved." << std::endl;
     }
 
     // Tell the user it is finished updating

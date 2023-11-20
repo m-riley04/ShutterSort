@@ -28,8 +28,6 @@ class Anchor {
             Checks for any new files in the given input folder. 
             If there are files, calls on the sorter and moves them to the given output folder. 
         */
-        void update(const std::filesystem::path input, const std::filesystem::path output);
-
 
         /* --- GETTERS --- */
         // Returns the path to the anchor directory
@@ -39,7 +37,7 @@ class Anchor {
         std::filesystem::path getOutputDirectory();
         
         // Returns the sorter object for the anchor
-        Sorter getSorter();
+        Sorter& getSorter();
 
         // Returns the update interval (in milliseconds)
         int getInterval();
