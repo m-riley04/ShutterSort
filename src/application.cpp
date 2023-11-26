@@ -1,5 +1,6 @@
 #include "application.h"
 #include "shuttersort.h"
+#include "sorttimer.h"
 
 //----- VALUE SORTING METHODS ------------------------------------------------------
 
@@ -29,7 +30,7 @@ void Application::run() {
     printf("ShutterSort has started successfully.\n");
 
     // Get image path
-    std::string imgPath = "TestCases/cat.jpg";
+    std::string imgPath = "C:/Visual Studio 2022/ShutterSort/ShutterSort/ShutterSort/TestCases/cat.jpg";
 
     // Load metadata object
     Metadata myMetadata;
@@ -50,18 +51,30 @@ void Application::run() {
     // Test Anchor
     Anchor anchor(std::string("C:/Users/vex10/Desktop/InputDirectory"), std::string("C:/Users/vex10/Desktop/OutputDirectory"), sorter);
 
+    // Initialize timer
+    SortTimer timer(std::chrono::milliseconds(1000), update, anchor);
+
     // CLI Debug
-    std::cout << "0. Exit\n1. Update Anchor\n2. Print test metadata";
+    std::cout << "0. Exit\n1. Manually Update Anchor\n2. Start Auto-Sort\n3. Stop Auto-Sort\n4. Print test metadata";
     std::string userInput;
     while (userInput != "0") {
         std::cin >> userInput;
         switch (stoi(userInput)) {
             case 1:
-                anchor.update();
+                printf("Manual update initiated.\n");
+                update(anchor);
                 break;
             case 2:
+                printf("Started auto-sorting...\n");
+                timer.start();
+                break;
+            case 3:
+                printf("Stopped auto-sorting.\n");
+                timer.stop();
+                break;
+            case 4:
                 // Create test local image and print it
-                image.getMetadata().printAll();
+                //image.getMetadata().printAll();
                 break;
             default:
                 std::cout << "Please choose from the menu options above." << std::endl;
