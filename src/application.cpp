@@ -9,6 +9,18 @@ bool sort_int(int target, int minRange, int maxRange) {
     return false;
 }
 
+// Sorts a target double between 2 values
+bool sort_double(double target, double minRange, double maxRange) {
+    if (minRange <= target && target <= maxRange) { return true; }
+    return false;
+}
+
+// Checks if a string is within another string
+bool sort_string(std::string target, std::string str) {
+    if (str.find(target) > 0) { return true; }
+    return false;
+}
+
 //--- CLASS METHODS ----------------------------------------------------------------
 // Starts the main application loop
 void Application::run() {
