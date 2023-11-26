@@ -10,26 +10,44 @@ namespace fs = filesystem;
 
 // Constructor
 Anchor::Anchor(){};
-Anchor::Anchor(std::string directory, std::string outputDirectory, Sorter& sorter, int updateInterval) {
+Anchor::Anchor(std::string directory, std::string outputDirectory, Sorter& sorter, int interval) {
     this->directory = std::filesystem::path(directory);
     this->outputDirectory = std::filesystem::path(outputDirectory);
     this->sorter = sorter;
-    this->updateInterval = updateInterval;
+    this->interval = interval;
 }
-Anchor::Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter, int updateInterval) {
+Anchor::Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter, int interval) {
     this->directory = directory;
     this->outputDirectory = outputDirectory;
     this->sorter = sorter;
-    this->updateInterval = updateInterval;
+    this->interval = interval;
 }
 
-// Iterates through the anchor directory, checks for any changes, and calls on the sorter to sort if there are.
-void Anchor::update()
+std::filesystem::path Anchor::getDirectory() {
+    return directory;
+}
+
+std::filesystem::path Anchor::getOutputDirectory() {
+    return outputDirectory;
+}
+
+
+Sorter& Anchor::getSorter() {
+    return sorter;
+}
+
+// Returns the update interval for an anchor
+int Anchor::getInterval() {
+    return interval;
+}
+
+// Iterates through an anchor, checks for any changes, and calls on the sorter to sort if there are.
+void update(Anchor anchor)
 {
     std::cout << "Checking for changes in Anchor" << std::endl;
 
     // Check if the directory is empty. If it is, do nothing.
-    if (fs::is_empty(directory))
+    if (fs::is_empty(anchor.getDirectory()))
     {
         std::cout << "Anchor is empty." << std::endl;
         return;
@@ -40,7 +58,7 @@ void Anchor::update()
     // TODO: Move all non-image entries to the miscellaneous directory
 
     // Loop through every file in the input directory with a directory_iterator
-    for (fs::path const &dir_entry : std::filesystem::directory_iterator{directory}) {
+    for (fs::path const &dir_entry : std::filesystem::directory_iterator{ anchor.getDirectory() }) {
         // Get the name of the current file
         fs::path filename = dir_entry.filename();
 
@@ -53,7 +71,7 @@ void Anchor::update()
 
         // Call on the sorter to check all sorting methods
         bool matches = true;
-        for (SortingMethod& sortingMethod : this->sorter.getMethods())
+        for (SortingMethod& sortingMethod : anchor.getSorter().getMethods())
         {
             // Print the current sorting method being checked
             std::cout << "Current Sorting Method: " << sortingMethod.getName() << std::endl;
@@ -90,7 +108,7 @@ void Anchor::update()
         }
 
         // Get the sorted folder name
-        fs::path output = this->outputDirectory;
+        fs::path output = anchor.getOutputDirectory();
 
         // Concat an unsorted folder name if all sorting methods do not match
         if (!matches)

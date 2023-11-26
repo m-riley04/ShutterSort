@@ -10,19 +10,19 @@ class Anchor {
         std::filesystem::path directory;
         std::filesystem::path outputDirectory;
         Sorter sorter;
-        int updateInterval = 1000;
+        int interval = 1000;
         
     public:
         // Default constructor
         Anchor();
-        Anchor(std::string directory, std::string outputDirectory, Sorter& sorter, int updateInterval = 1000);
-        Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter, int updateInterval = 1000);
+        Anchor(std::string directory, std::string outputDirectory, Sorter& sorter, int interval = 1000);
+        Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter, int interval = 1000);
         
         /*  
             Checks for any new files in the anchor folder. 
             If there are files, calls on the sorter and moves them to the output folder. 
         */
-        void update();
+        //void update();
 
         /* 
             Checks for any new files in the given input folder. 
@@ -42,5 +42,8 @@ class Anchor {
         // Returns the update interval (in milliseconds)
         int getInterval();
 };
+
+// Iterates through an anchor, checks for any changes, and calls on the sorter to sort if there are.
+void update(Anchor anchor);
 
 #endif
