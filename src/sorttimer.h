@@ -11,6 +11,6 @@ public:
     SortTimer(std::chrono::milliseconds interval, std::function<void(Anchor)> func, Anchor anchor);
     void start();
     void setFunction(std::function<void(Anchor)> func);
-    void setAnchor(Anchor anchor);
+    void setAnchor(Anchor& anchor);
 };
 

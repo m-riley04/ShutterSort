@@ -8,15 +8,19 @@ Timer::Timer(std::chrono::milliseconds interval, std::function<void()> func)
 Timer::~Timer() {}
 
 void Timer::start() {
-	active = true;
+	if (active != true) {
+		active = true;
 
-	thread = std::thread([=]()
-	{
-		while (active) {
-			std::this_thread::sleep_for(interval);
-			func();
-		}
-	});
+		thread = std::thread([=]()
+			{
+				while (active) {
+					std::this_thread::sleep_for(interval);
+					func();
+				}
+			});
+	} else {
+		std::cout << "ERROR: Timer is already started." << std::endl;
+	}
 }
 
 void Timer::stop() {

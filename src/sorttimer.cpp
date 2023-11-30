@@ -7,17 +7,25 @@ SortTimer::SortTimer(std::chrono::milliseconds interval, std::function<void(Anch
 }
 
 void SortTimer::start() {
-	active = true;
+	if (active != true) {
+		active = true;
 
-	thread = std::thread([=]()
-		{
-			while (active) {
-				std::this_thread::sleep_for(interval);
-				func(anchor);
-			}
-		});
+		thread = std::thread([=]()
+			{
+				while (active) {
+					std::this_thread::sleep_for(interval);
+					func(anchor);
+				}
+			});
+	} else {
+		std::cout << "ERROR: Timer is already started." << std::endl;
+	}
 }
 
 void SortTimer::setFunction(std::function<void(Anchor)> func) {
 	this->func = func;
+}
+
+void SortTimer::setAnchor(Anchor& anchor) {
+	this->anchor = anchor;
 }
