@@ -4,19 +4,20 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <any>
 #include <exiv2/exiv2.hpp>
 
 class Metadata {
     private:
     // Using a map to store key-value pairs of metadata.
-    std::map<std::string, std::string> data;
+    std::map<std::string, std::any> data;
 
     public:
         // Adds or updates a metadata value.
-        void set(const std::string& key, const std::string& value);
+        void set(const std::string& key, const std::any& value);
 
         // Retrieves a metadata value, returns an empty string if not found.
-        std::string get(const std::string& key);
+        std::any get(const std::string& key);
 
         // Helper for load() function
         void load_helper(Exiv2::ExifData data);

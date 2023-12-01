@@ -2,14 +2,15 @@
 #include <string>
 #include <functional>
 
+//----- CLASS METHODS ------------------------------------------------------
 // Default constructor
 SortingMethod::SortingMethod()
-    : name(""), tag(""), min(0), max(0), status(DISABLED) {
+    : name(""), tag(""), min(std::any(double(0))), max(std::any(double(0))), status(DISABLED) {
 }
 
 // Parameterized constructor
-SortingMethod::SortingMethod(std::string name, std::string tag, int min, int max, std::function<bool(int, int, int)> method)
-    : name(name), tag(tag), min(min), max(max), status(DISABLED), method(method) {
+SortingMethod::SortingMethod(std::string name, std::string tag, std::any min, std::any max)
+    : name(name), tag(tag), min(min), max(max), status(DISABLED) {
 }
 
 /* --- GETTERS --- */
@@ -21,25 +22,21 @@ std::string SortingMethod::getTag() {
     return this->tag;
 }
 
-int SortingMethod::getMin() {
+std::any& SortingMethod::getMin() {
     return this->min;
 }
 
-int SortingMethod::getMax() {
+std::any& SortingMethod::getMax() {
     return this->max;
 }
 
-int* SortingMethod::getBounds() {
-    static int bounds[2] = {this->min, this->max};
+std::any* SortingMethod::getBounds() {
+    static std::any bounds[2] = {this->min, this->max};
     return bounds;
 }
 
 int SortingMethod::getStatus() {
     return this->status;
-}
-
-std::function<bool(int, int, int)>& SortingMethod::getMethod() {
-    return this->method;
 }
 
 /* --- SETTERS --- */
@@ -51,18 +48,14 @@ void SortingMethod::setTag(std::string tag) {
     this->tag = tag;
 }
 
-void SortingMethod::setMin(int min) {
+void SortingMethod::setMin(std::any min) {
     this->min = min;
 }
 
-void SortingMethod::setMax(int max) {
+void SortingMethod::setMax(std::any max) {
     this->max = max;
 }
 
 void SortingMethod::setStatus(int status) {
     this->status = status;
-}
-
-void SortingMethod::setMethod(std::function<bool(int, int, int)> method) {
-    this->method = method;
 }

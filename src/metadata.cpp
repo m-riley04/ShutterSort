@@ -10,17 +10,17 @@
 #include <map>
 
 // Adds or updates a metadata value.
-void Metadata::set(const std::string& key, const std::string& value) {
+void Metadata::set(const std::string& key, const std::any& value) {
     this->data[key] = value;
 }
 
 // Retrieves a metadata value, returns an empty string if not found.
-std::string Metadata::get(const std::string& key) {
+std::any Metadata::get(const std::string& key) {
     auto it = this->data.find(key);
     if (it != this->data.end()) {
-        return it->second;
+        return std::any(it->second);
     }
-    return "";
+    return std::any();
 }
 
 // Convert numeric values to a string representation
@@ -125,7 +125,7 @@ void Metadata::load_helper(Exiv2::ExifData data) {
     for (auto it = data.begin(); it != data.end(); ++it) {
         if (it->value().count() > 0) { // Ensuring the value is not empty
             std::string key = it->key();
-            std::string value;
+            std::any value;
 
             switch (it->value().typeId()) {
                 case Exiv2::signedByte:
@@ -136,23 +136,23 @@ void Metadata::load_helper(Exiv2::ExifData data) {
                 case Exiv2::unsignedRational:
                 case Exiv2::signedRational:
                     // Handle numeric and rational types
-                    value = it->value().toString();// numericValueToString(*it);
+                    value = std::any(double(it->value().toFloat())); // numericValueToString(*it);
                     break;
                 case Exiv2::unsignedByte:
                     // Special handling for UCS-2 encoded byte values
-                    value = ucs2leToUtf8(parseUcs2String(it->value().toString()));
+                    value = std::any(ucs2leToUtf8(parseUcs2String(it->value().toString())));
                     break;
                 case Exiv2::asciiString:
                     // Handle ASCII strings directly
-                    value = it->value().toString();
+                    value = std::any(it->value().toString());
                     break;
                 case Exiv2::undefined:
                     // Handle undefined (binary) data
-                    value = it->value().toString();//binaryToHexString(it->value().toString());
+                    value = std::any(it->value().toString());//binaryToHexString(it->value().toString());
                     break;
                 default:
                     // Fallback for other types
-                    value = it->value().toString();
+                    value = std::any(it->value().toString());
                     break;
             }
 
@@ -214,10 +214,19 @@ void Metadata::printAll() {
     int n = sizeof(blacklist) / sizeof(*blacklist);
 
     for (const auto& kv : data) {
-        // Filter 'padding' metadata
-        if (std::find(blacklist, blacklist + n, kv.first) == blacklist + n)
-        {
-            std::cout << kv.first << ": " << kv.second << std::endl;
+        const auto& val = kv.second;
+
+        if (val.type() == typeid(std::string)) {
+            std::cout << kv.first << ": " << std::any_cast<std::string>(val) << std::endl;
+        }
+        else if (val.type() == typeid(int)) {
+            std::cout << kv.first << ": " << std::any_cast<int>(val) << std::endl;
+        }
+        else if (val.type() == typeid(float)) {
+            std::cout << kv.first << ": " << std::any_cast<float>(val) << std::endl;
+        }
+        else {
+            std::cout << kv.first << ": [Unsupported type]" << std::endl;
         }
     }
 }

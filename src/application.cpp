@@ -2,26 +2,6 @@
 #include "shuttersort.h"
 #include "sorttimer.h"
 
-//----- VALUE SORTING METHODS ------------------------------------------------------
-
-// Sorts a target integer between 2 values
-bool sort_int(int target, int minRange, int maxRange) {
-    if (minRange <= target && target <= maxRange) { return true; }
-    return false;
-}
-
-// Sorts a target double between 2 values
-bool sort_double(double target, double minRange, double maxRange) {
-    if (minRange <= target && target <= maxRange) { return true; }
-    return false;
-}
-
-// Checks if a string is within another string
-bool sort_string(std::string target, std::string str) {
-    if (str.find(target) > 0) { return true; }
-    return false;
-}
-
 //--- CLASS METHODS ----------------------------------------------------------------
 // Starts the main application loop
 void Application::run() {
@@ -29,19 +9,9 @@ void Application::run() {
     // Test to see if main executes successfully.
     printf("ShutterSort has started successfully.\n");
 
-    // Get image path
-    std::string imgPath = "C:/Visual Studio 2022/ShutterSort/ShutterSort/ShutterSort/TestCases/cat.jpg";
-
-    // Load metadata object
-    Metadata myMetadata;
-    myMetadata.load(imgPath);
-
-    // Create local image
-    LocalImage image(imgPath);
-
     // Create template sortingmethods
-    SortingMethod method_1("Method 1", "Exif.Image2.Compression", 0, 9, sort_int);
-    SortingMethod method_2("Method 2", "Exif.Image.Compression", 3, 7, sort_int);
+    SortingMethod method_1("Method 1", "Exif.Image2.Compression", std::any(double(0)), std::any(double(9)));
+    SortingMethod method_2("Method 2", "Exif.Image.Compression", std::any(double(3)), std::any(double(7)));
 
     // Create sorter and populate with dummy sorting methods
     Sorter sorter;
@@ -73,8 +43,20 @@ void Application::run() {
                 timer.stop();
                 break;
             case 4:
-                // Create test local image and print it
-                //image.getMetadata().printAll();
+            {
+                // Get image path
+                std::string imgPath = "C:/Visual Studio 2022/ShutterSort/ShutterSort/ShutterSort/TestCases/cat.jpg";
+
+                // Load metadata object
+                Metadata myMetadata;
+                myMetadata.load(imgPath);
+
+                // Create local image
+                LocalImage image(imgPath);
+
+                // Print all metadata from local image
+                image.getMetadata().printAll();
+            }
                 break;
             default:
                 std::cout << "Please choose from the menu options above." << std::endl;
