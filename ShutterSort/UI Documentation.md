@@ -1,9 +1,9 @@
-* File Upload Button
+File Upload Button
 
 1. Set Up a Slot for Button Click Event: You need to connect the button's clicked signal to a slot (a function) that will handle the file upload process. This can be done using the signal-slot mechanism in Qt.
 2. Implement the Slot Function: In this function, you'll use a QFileDialog to open a file chooser dialog where users can select the file they wish to upload.
 
-** Example Code:
+ Example Code:
  ```bash
 #include <QPushButton>
 #include <QFileDialog>
@@ -28,11 +28,11 @@ Need to replace YourClassName with the name of our class. When the button is cli
 fileName, which you can then use to read the file or perform other actions.
 Remember to adjust the path and file types in the QFileDialog::getOpenFileName function to suit your needs.
 
-* File Path Display Labels
+File Path Display Labels
 1. Set Up QLabel Properties: Set the initial text of the QLabel to something like "File Path: " or leave them blank if you prefer. You can also customize their appearance as needed.
 2. Update QLabel Text in the Slot Function: Modify your slot function that handles the file upload to update the text of the first QLabel with the selected file's directory path. Similarly, after your program generates an output file, update the second QLabel with its path.
 
-** Example Code:
+Example Code:
 ```bash
 #include <QPushButton>
 #include <QFileDialog>
