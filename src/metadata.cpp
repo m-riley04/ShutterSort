@@ -219,6 +219,9 @@ void Metadata::printAll() {
         if (val.type() == typeid(std::string)) {
             std::cout << kv.first << ": " << std::any_cast<std::string>(val) << std::endl;
         }
+        else if (val.type() == typeid(double)) {
+            std::cout << kv.first << ": " << std::any_cast<double>(val) << std::endl;
+        }
         else if (val.type() == typeid(int)) {
             std::cout << kv.first << ": " << std::any_cast<int>(val) << std::endl;
         }

@@ -19,7 +19,7 @@ void Application::run() {
     sorter.getMethods().push_back(method_2);
 
     // Test Anchor
-    Anchor anchor(std::string("C:/Users/vex10/Desktop/InputDirectory"), std::string("C:/Users/vex10/Desktop/OutputDirectory"), sorter);
+    Anchor anchor(std::string("C:/Users/riley/Desktop/InputDirectory"), std::string("C:/Users/riley/Desktop/OutputDirectory"), sorter);
 
     // Initialize timer
     SortTimer timer(std::chrono::milliseconds(1000), update, anchor);
@@ -45,7 +45,7 @@ void Application::run() {
             case 4:
             {
                 // Get image path
-                std::string imgPath = "C:/Visual Studio 2022/ShutterSort/ShutterSort/ShutterSort/TestCases/cat.jpg";
+                std::string imgPath = "TestCases/cat.jpg";
 
                 // Load metadata object
                 Metadata myMetadata;
