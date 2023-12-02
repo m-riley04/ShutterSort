@@ -62,6 +62,100 @@ bool sort_string(std::string target, std::string str) {
 }
 //----------------------------------------------------------------------------------
 
+
+//----- MISCELANEOUS FILE SORTING --------------------------------------------------
+// Sort a given path's contents to an output file's directory based on if they are not an image filetype
+void sortToMisc(const std::string& originalDirectory, const std::string& outputDirectory) {
+    int filesMoved                  = 0; // Counter for the number of files moved
+    std::string imageExtensions[12]  = { ".jpg", ".jpeg", ".JPG", ".JPEG", ".gif", ".bmp", ".ico", ".png", ".ps", ".svg", ".tif", ".tiff" }; // Currently supported file extensions
+
+    // Loop through directory's contents 1 by 1
+    for (fs::directory_entry entry : fs::directory_iterator(originalDirectory)) {
+        if (entry.is_regular_file()) {
+            std::string file        = entry.path().filename().string();
+            std::string extension   = entry.path().extension().string();
+
+            // Create imageExtensions iterator
+            auto it = std::find(std::begin(imageExtensions), std::end(imageExtensions), extension);
+            
+            // If the iterator reached the end, then the extension is not within imageExtensions
+            if (it == std::end(imageExtensions)) {
+                if (!fs::exists(fs::path(outputDirectory) /= "Miscellaneous"))
+                {
+                    fs::create_directory(fs::path(outputDirectory) /= "Miscellaneous");
+                }
+                fs::rename(entry.path(), outputDirectory + "/Miscellaneous/" + file);
+                std::cout << "Moved the non-images: " << file << std::endl;
+                filesMoved++;
+            }
+        }
+    }
+
+    // Print results
+    if (filesMoved == 0) {
+        std::cout << "No files were moved to miscellaneous." << std::endl;
+    }
+    else {
+        std::cout << filesMoved << " files moved to miscellaneous." << std::endl;
+    }
+}
+
+void makeTempCopy(const std::string& sourcePath, const std::string& destPath) {
+    std::filesystem::path sourceDir(sourcePath);
+    std::filesystem::path destDir(destPath);
+
+    try {
+
+        //Check if the directory exists
+        if (std::filesystem::exists(sourceDir) && std::filesystem::is_directory(sourceDir)) {
+
+            std::filesystem::create_directory(destDir); //Create destination directory if it doesn't exist
+
+            int filesCopied     = 0;
+            //Iterate through the files in the source directory
+            for (const auto& entry : std::filesystem::directory_iterator(sourceDir)) {
+
+                if (std::filesystem::is_regular_file(entry)) {
+                    //get the files name 
+                    std::filesystem::path sourceFile = entry.path();
+                    //append the files name to the destination directory
+                    std::filesystem::path destFile = destDir / sourceFile.filename();
+
+                    //copy file to the destination directory
+                    std::filesystem::copy_file(sourceFile, destFile, std::filesystem::copy_options::overwrite_existing);
+
+                    std::cout << "Copied: " << sourceFile << " to " << destFile << std::endl;
+                    filesCopied++;
+                }
+            }
+
+            if (filesCopied != 0)
+                std::cout << "All files copied successfully." << std::endl;
+            else
+                std::cout << "No files copied" << std::endl;
+
+        }
+        else {
+            std::cerr << "Source directory doesn't exist or is not a directory." << std::endl;
+        }
+    }
+    catch (const std::exception& ex) {
+        std::cerr << "Error: " << ex.what() << std::endl;
+    }
+}
+
+void deleteTempCopy(const std::string& destPath) {
+    fs::path tempDir(destPath);
+    try {
+        fs::remove_all(tempDir); // Deletes the directory and its contents
+    }
+    catch (const fs::filesystem_error& e) {
+        std::cerr << "Error deleting directory: " << e.what() << std::endl;
+    }
+}
+
+//----------------------------------------------------------------------------------
+
 // Iterates through an anchor, checks for any changes, and calls on the sorter to sort if there are.
 void update(Anchor anchor)
 {
