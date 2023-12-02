@@ -41,6 +41,27 @@ Sorter& Anchor::getSorter() {
 int Anchor::getID() {
     return this->id;
 }
+
+void Anchor::setDirectory(std::string path) {
+    this->directory         = std::filesystem::path(path);
+}
+
+void Anchor::setDirectory(std::filesystem::path path) {
+    this->directory         = path;
+}
+
+void Anchor::setOutputDirectory(std::string path) {
+    this->outputDirectory = std::filesystem::path(path);
+}
+
+void Anchor::setOutputDirectory(std::filesystem::path path) {
+    this->outputDirectory = path;
+}
+
+void Anchor::setSorter(Sorter& sorter) {
+    this->sorter = sorter;
+}
+
 //----- VALUE SORTING METHODS ------------------------------------------------------
 
 // Sorts a target integer between 2 values
