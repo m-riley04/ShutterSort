@@ -21,6 +21,10 @@ public:
 	virtual void start();
 	void stop();
 
+	/* --- GETTERS --- */
+	bool getStatus();
+
+	/* --- SETTERS --- */
 	void setFunction(std::function<void()> func);
 	virtual void setInterval(std::chrono::milliseconds interval);
 };

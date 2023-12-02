@@ -28,6 +28,10 @@ void Timer::stop() {
 	if (thread.joinable()) { thread.join(); }
 }
 
+bool Timer::getStatus() {
+	return this->active;
+}
+
 void Timer::setInterval(std::chrono::milliseconds interval) {
 	this->interval = interval;
 }
