@@ -19,7 +19,18 @@ void Application::run() {
     sorter.getMethods().push_back(method_2);
 
     // Test Anchor
-    Anchor anchor(std::string("C:/Users/riley/Desktop/InputDirectory"), std::string("C:/Users/riley/Desktop/OutputDirectory"), sorter);
+    Anchor anchor;
+    try {
+        std::string anchorDir       = "C:/Users/riley/Desktop/InputDirector";
+        std::string anchorOutput    = "C:/Users/riley/Desktop/OutputDirectory";
+        anchor.setDirectory(anchorDir);
+        anchor.setOutputDirectory(anchorOutput);
+        anchor.setSorter(sorter);
+    }
+    catch (int e) {
+        std::cout << "ERROR: An exception has occurred when reading in the test Anchor. Exception #: " << e << std::endl;
+        return;
+    }
 
     // Initialize timer
     SortTimer timer(std::chrono::milliseconds(1000), update, anchor);
