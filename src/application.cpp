@@ -85,6 +85,51 @@ void Application::run() {
                 image.getMetadata().printAll();
             }
                 break;
+            case 5:
+            {
+                std::cout << "(Press 0 to cancel operation)" << std::endl;
+                std::string path;
+                while (path != "0") {
+                    std::cout << "Please give a valid Anchor path:\n>> ";
+                    std::cin >> path;
+                    std::cout << std::endl;
+
+                    // Test the path
+                    if (!std::filesystem::exists(std::filesystem::path(path))) {
+                        std::cout << "ERROR: Invalid path '" << path << "'. Please try again." << std::endl;
+                    }
+                    else {
+                        // Set the Anchor path
+                        anchor.setDirectory(std::filesystem::path(path));
+                        std::cout << "New Anchor path '" << path << "' for Anchor #" << anchor.getID() << "." << std::endl;
+                    }
+                }
+                
+            }
+                break;
+
+            case 6:
+            {
+                std::cout << "(Press 0 to cancel operation)" << std::endl;
+                std::string path;
+                while (path != "0") {
+                    std::cout << "Please give a valid output path:\n>> ";
+                    std::cin >> path;
+                    std::cout << std::endl;
+
+                    // Test the path
+                    if (!std::filesystem::exists(std::filesystem::path(path))) {
+                        std::cout << "ERROR: Invalid path '" << path << "'. Please try again." << std::endl;
+                    }
+                    else {
+                        // Set the Anchor path
+                        anchor.setOutputDirectory(std::filesystem::path(path));
+                        std::cout << "New output path '" << path << "' for Anchor #" << anchor.getID() << "." << std::endl;
+                    }
+                }
+
+            }
+            break;
             default:
                 std::cout << "Please choose from the menu options above." << std::endl;
                 break;
