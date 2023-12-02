@@ -16,7 +16,7 @@ class Anchor {
         Anchor();
         Anchor(std::string directory, std::string outputDirectory, Sorter& sorter);
         Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter);
-        
+
         /* --- GETTERS --- */
         // Returns the path to the anchor directory
         std::filesystem::path getDirectory();
