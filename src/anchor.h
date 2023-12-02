@@ -32,6 +32,18 @@ class Anchor {
 
         // Returns the Anchor's ID
         int getID();
+
+        /* --- SETTERS --- */
+        // Sets the path to the anchor directory
+        void setDirectory(std::string path);
+        void setDirectory(std::filesystem::path path);
+
+        // Sets the path to the output directory
+        void setOutputDirectory(std::string path);
+        void setOutputDirectory(std::filesystem::path path);
+
+        // Sets the sorter object for the anchor
+        void setSorter(Sorter& sorter);
 };
 
 // Iterates through an anchor, checks for any changes, and calls on the sorter to sort if there are.
