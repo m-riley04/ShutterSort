@@ -175,7 +175,28 @@ void update(Anchor anchor)
 
 
     // Loop through every file in the input directory with a directory_iterator
-    for (fs::path const &dir_entry : std::filesystem::directory_iterator{ anchor.getDirectory() }) {
+    for (fs::path const &dir_entry : fs::directory_iterator(anchorDirectory)) {
+
+        // Check if the current entry is a folder
+        if (fs::is_directory(dir_entry))
+        {
+            // Sort all within subfolder with recursion
+            Anchor subanchor(anchorDirectory /= dir_entry.filename(), anchorOutputDirectory, anchorSorter);
+            update(subanchor);
+            
+            // subfolder output folder
+            anchorOutputDirectory /= "Empty Folders";
+
+            // Check if folder for empty folders exists
+            if (!fs::exists(anchorOutputDirectory)) {
+                fs::create_directory(anchorOutputDirectory);
+            }
+            
+            // Move subfolder
+            fs::rename(anchorDirectory,  anchorOutputDirectory /= dir_entry.filename());
+            continue;
+        }
+
         // Get the name of the current file
         fs::path filename = dir_entry.filename();
 
