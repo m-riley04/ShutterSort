@@ -1,10 +1,11 @@
-#include "application.h"
+#include "mainwindow.h"
 
-int main(){
-    Application app;
+#include <QApplication>
 
-    // Start the application
-    app.run();
-
-    return 0;
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }
