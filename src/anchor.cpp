@@ -30,7 +30,6 @@ std::filesystem::path Anchor::getOutputDirectory() {
     return outputDirectory;
 }
 
-
 Sorter& Anchor::getSorter() {
     return sorter;
 }
@@ -161,17 +160,23 @@ void update(Anchor anchor)
 {
     std::cout << "Checking for changes in Anchor" << std::endl;
 
+    // Get anchor variables
+    fs::path anchorDirectory        = anchor.getDirectory();
+    fs::path anchorOutputDirectory  = anchor.getOutputDirectory();
+    Sorter anchorSorter             = anchor.getSorter();
+
     // Check if the directory is empty. If it is, do nothing.
-    if (fs::is_empty(anchor.getDirectory()))
+    if (fs::is_empty(anchorDirectory))
     {
         std::cout << "Anchor is empty." << std::endl;
         return;
     }
 
+    // Move all non-image entries to the miscellaneous directory
+    sortToMisc(anchorDirectory.string(), anchorOutputDirectory.string());
+
+
     // TODO: Make a copy of all images within the folder
-
-
-    // TODO: Move all non-image entries to the miscellaneous directory
 
 
     // Loop through every file in the input directory with a directory_iterator
@@ -198,32 +203,28 @@ void update(Anchor anchor)
         }
 
         // Get the name of the current file
-        fs::path filename = dir_entry.filename();
+        fs::path filename       = dir_entry.filename();
 
         // Print file that is being moved
         std::cout << "File found: " << filename << endl;
 
         // Create LocalImage object to be loaded
         LocalImage image(dir_entry);
-        Metadata metadata = image.getMetadata();
+        Metadata metadata       = image.getMetadata();
 
         // Call on the sorter to check all sorting methods
         bool matches = true;
-        for (SortingMethod& sortingMethod : anchor.getSorter().getMethods())
+        for (SortingMethod& sortingMethod : anchorSorter.getMethods())
         {
-            // Print the current sorting method being checked
-            std::cout << "Current Sorting Method: " << sortingMethod.getName() << std::endl;
- 
-            //----
-            //TODO - Check type from string (instead of only doing integers)
-            //----
-
             // Initialize the variables for sorting
-            const string tag = sortingMethod.getTag();
-            const string name = sortingMethod.getName();
-            const std::any min = sortingMethod.getMin();
-            const std::any max = sortingMethod.getMax();
-            const auto& val = metadata.get(tag);
+            const string tag    = sortingMethod.getTag();
+            const string name   = sortingMethod.getName();
+            const std::any min  = sortingMethod.getMin();
+            const std::any max  = sortingMethod.getMax();
+            const auto& val     = metadata.get(tag);
+
+            // Print the current sorting method being checked
+            std::cout << "Current Sorting Method: " << name << std::endl;            
 
             // Check if tag exists in metadata
             if (!metadata.contains(tag))
@@ -233,15 +234,15 @@ void update(Anchor anchor)
                 break;
             }
 
-            // Type-check
-            bool passed;
-
+            // Make sure value isn't null
             if (!val.has_value()) {
                 std::cout << "No value for tag: " << tag << std::endl;
                 matches = false;
                 break;
-            }   
+            }
 
+            // Check all types
+            bool passed;
             if (val.type() == typeid(double)) {
                 passed = sort_double(std::any_cast<double>(val), std::any_cast<double>(min), std::any_cast<double>(max));
             }
@@ -270,7 +271,7 @@ void update(Anchor anchor)
         }
 
         // Get the sorted folder name
-        fs::path output = anchor.getOutputDirectory();
+        fs::path output     = anchorOutputDirectory;
 
         // Concat an unsorted folder name if all sorting methods do not match
         if (!matches)
@@ -291,9 +292,10 @@ void update(Anchor anchor)
         std::cout << "File '" << filename << "' was moved." << std::endl;
     }
 
-    // Tell the user it is finished updating
-    std::cout << "Updated Anchor." << std::endl;
+    // TODO: delete temporary image copies
+    
 
-    // Remove temporary copies
+    // Tell the user it is finished updating
+    std::cout << "Successfully updated Anchor." << std::endl;
 
 }
