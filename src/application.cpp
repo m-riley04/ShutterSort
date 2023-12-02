@@ -35,12 +35,23 @@ void Application::run() {
     // Initialize timer
     SortTimer timer(std::chrono::milliseconds(1000), update, anchor);
 
-    // CLI Debug
-    std::cout << "0. Exit\n1. Manually Update Anchor\n2. Start Auto-Sort\n3. Stop Auto-Sort\n4. Print test metadata" << std::endl;
+    //----- CLI Debug----------------------------------------------------------------------------------------------------------------
+    std::cout << "0. Exit\n1. Manually Update Anchor\n2. Start Auto-Sort\n3. Stop Auto-Sort\n4. Print test metadata\n5. Set new Anchor path\n6. Set new Anchor output path" << std::endl;
     std::string userInput;
+    
+    // Main command loop
     while (userInput != "0") {
         std::cout << ">> ";
         std::cin >> userInput;
+
+        try {
+            stoi(std::string(userInput));
+        }
+        catch (const std::invalid_argument &ex) {
+            std::cout << "ERROR: Please type a valid integer from the list of commands." << std::endl;
+            continue;
+        }
+
         switch (stoi(userInput)) {
             case 0:
                 // Stop the timer before the thread is closed
