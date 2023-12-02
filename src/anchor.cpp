@@ -35,11 +35,6 @@ Sorter& Anchor::getSorter() {
     return sorter;
 }
 
-// Returns the update interval for an anchor
-int Anchor::getInterval() {
-    return interval;
-}
-
 //----- VALUE SORTING METHODS ------------------------------------------------------
 
 // Sorts a target integer between 2 values
