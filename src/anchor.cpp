@@ -173,6 +173,24 @@ void update(Anchor anchor)
     fs::path anchorOutputDirectory  = anchor.getOutputDirectory();
     Sorter anchorSorter             = anchor.getSorter();
 
+    // Check if directories exist
+    if (!fs::exists(anchorDirectory))
+    {
+        cout << "ERROR: Anchor #" << anchorID << " directory does not exist:\n\t >> Incorrect Path:\t'" << anchorDirectory.string() << "'" << endl;
+        return;
+    }
+    if (!fs::exists(anchorOutputDirectory))
+    {
+        cout << "ERROR: Anchor #" << anchorID << " output directory does not exist:\n\t >> Incorrect Path:\t'" << anchorOutputDirectory.string() << "'" << endl;
+        return;
+    }
+
+    // Check if Sorter is empty
+    if (anchorSorter.getMethods().size() == 0) {
+        cout << "ERROR: There are no sorting methods in the Sorter for Anchor #" << anchorID << "." << endl;
+        return;
+    }
+
     // Check if the directory is empty. If it is, do nothing.
     if (fs::is_empty(anchorDirectory))
     {
