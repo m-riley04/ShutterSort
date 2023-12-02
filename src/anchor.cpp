@@ -224,6 +224,9 @@ void update(Anchor anchor)
         bool matches = true;
         for (SortingMethod& sortingMethod : anchorSorter.getMethods())
         {
+            // Skip if the SortingMethod status is disabled
+            if (!sortingMethod.getStatus()) { continue; }
+
             // Initialize the variables for sorting
             const string tag    = sortingMethod.getTag();
             const string name   = sortingMethod.getName();
