@@ -11,6 +11,9 @@ class Anchor {
         std::filesystem::path outputDirectory;
         Sorter sorter;
         
+        int id;
+        static int idCounter;
+        
     public:
         // Default constructor
         Anchor();
@@ -27,6 +30,8 @@ class Anchor {
         // Returns the sorter object for the anchor
         Sorter& getSorter();
 
+        // Returns the Anchor's ID
+        int getID();
 };
 
 // Iterates through an anchor, checks for any changes, and calls on the sorter to sort if there are.
