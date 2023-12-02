@@ -1,36 +1,47 @@
 #include "application.h"
 #include "shuttersort.h"
-#include "sorttimer.h"
+#include <QDebug>
 
-//--- CLASS METHODS ----------------------------------------------------------------
-// Starts the main application loop
-void Application::run() {
+//----- CLASS METHODS ----------------------------------------------------------------
+Application::Application() {
+
+    // TESTING - REMOVE LATER
+    this->_debug_populate();
+}
+
+void Application::addAnchor(std::string directoryPath, std::string outputDirectoryPath, Sorter& sorter) {
+
+}
+
+std::list<Anchor>& Application::getAnchors() {
+    return anchors;
+}
+
+void Application::printAnchors() {
+    int counter = 0;
+    for (Anchor& anchor : this->anchors) {
+        qDebug() << ++counter << ") Anchor #" << anchor.getID();
+    }
+}
+
+//----- DEBUG METHODS ----------------------------------------------------------------
+// Starts the main CLI application loop
+void Application::run_cli() {
 
     // Test to see if main executes successfully.
     printf("ShutterSort has started successfully.\n");
 
-    // Create template sortingmethods
-    SortingMethod method_1("Method 1", "Exif.Image2.Compression", std::any(double(0)), std::any(double(9)));
-    SortingMethod method_2("Method 2", "Exif.Image.Compression", std::any(double(3)), std::any(double(7)));
+    // Populate the anchor list with at least 1 anchor
+    this->_debug_populate();
 
-    // Create sorter and populate with dummy sorting methods
-    Sorter sorter;
-    sorter.getMethods().push_back(method_1);
-    sorter.getMethods().push_back(method_2);
-
-    // Test Anchor
-    Anchor anchor;
-    try {
-        std::string anchorDir       = "C:/Users/riley/Desktop/InputDirectory";
-        std::string anchorOutput    = "C:/Users/riley/Desktop/OutputDirectory";
-        anchor.setDirectory(anchorDir);
-        anchor.setOutputDirectory(anchorOutput);
-        anchor.setSorter(sorter);
-    }
-    catch (int e) {
-        std::cout << "ERROR: An exception has occurred when reading in the test Anchor #" << anchor.getID() << ".Exception #: " << e << std::endl;
+    // Check if anchor list is empty
+    if (this->anchors.empty()) {
+        std::cout << "ERROR: Main Anchor list is empty. Please populate the Anchor list before calling again." << std::endl;
         return;
     }
+
+    // Set anchor value
+    Anchor anchor = this->anchors.front();
 
     // Initialize timer
     SortTimer timer(std::chrono::milliseconds(1000), update, anchor);
@@ -135,4 +146,34 @@ void Application::run() {
                 break;
         }
     }
+}
+
+// Populates the application with a test anchor with test sorting methods
+void Application::_debug_populate() {
+    // Create template sortingmethods
+    SortingMethod method_1("Method 1", "Exif.Image2.Compression", std::any(double(0)), std::any(double(9)));
+    SortingMethod method_2("Method 2", "Exif.Image.Compression", std::any(double(3)), std::any(double(7)));
+
+    // Create sorter and populate with dummy sorting methods
+    Sorter sorter;
+    sorter.getMethods().push_back(method_1);
+    sorter.getMethods().push_back(method_2);
+
+    // Test Anchor
+    Anchor anchor;
+    try {
+        std::string anchorDir       = "C:/Users/vex10/Desktop/InputDirectory";
+        std::string anchorOutput    = "C:/Users/vex10/Desktop/OutputDirectory";
+        anchor.setDirectory(anchorDir);
+        anchor.setOutputDirectory(anchorOutput);
+        anchor.setSorter(sorter);
+    }
+    catch (int e) {
+        std::cout << "ERROR: An exception has occurred when reading in the test Anchor #" << anchor.getID() << ". Exception #: " << e << std::endl;
+        std::cout << "-- Failed to populate application with test anchor --" << std::endl;
+        return;
+    }
+
+    // If the anchor is fine, push it to the main anchor list
+    this->anchors.push_front(anchor);
 }
