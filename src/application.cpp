@@ -21,14 +21,14 @@ void Application::run() {
     // Test Anchor
     Anchor anchor;
     try {
-        std::string anchorDir       = "C:/Users/riley/Desktop/InputDirector";
+        std::string anchorDir       = "C:/Users/riley/Desktop/InputDirectory";
         std::string anchorOutput    = "C:/Users/riley/Desktop/OutputDirectory";
         anchor.setDirectory(anchorDir);
         anchor.setOutputDirectory(anchorOutput);
         anchor.setSorter(sorter);
     }
     catch (int e) {
-        std::cout << "ERROR: An exception has occurred when reading in the test Anchor. Exception #: " << e << std::endl;
+        std::cout << "ERROR: An exception has occurred when reading in the test Anchor #" << anchor.getID() << ".Exception #: " << e << std::endl;
         return;
     }
 
@@ -36,11 +36,16 @@ void Application::run() {
     SortTimer timer(std::chrono::milliseconds(1000), update, anchor);
 
     // CLI Debug
-    std::cout << "0. Exit\n1. Manually Update Anchor\n2. Start Auto-Sort\n3. Stop Auto-Sort\n4. Print test metadata";
+    std::cout << "0. Exit\n1. Manually Update Anchor\n2. Start Auto-Sort\n3. Stop Auto-Sort\n4. Print test metadata" << std::endl;
     std::string userInput;
     while (userInput != "0") {
+        std::cout << ">> ";
         std::cin >> userInput;
         switch (stoi(userInput)) {
+            case 0:
+                // Stop the timer before the thread is closed
+                timer.stop();
+                break;
             case 1:
                 printf("Manual update initiated.\n");
                 update(anchor);
@@ -74,7 +79,4 @@ void Application::run() {
                 break;
         }
     }
-
-    // Wait to close program
-    std::cin.ignore();
 }
