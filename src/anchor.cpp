@@ -9,17 +9,21 @@
 using namespace std;
 namespace fs = filesystem;
 
+int Anchor::idCounter = 0;
+
 // Constructor
-Anchor::Anchor(){};
+Anchor::Anchor() { id = ++idCounter; }
 Anchor::Anchor(std::string directory, std::string outputDirectory, Sorter& sorter) {
     this->directory         = std::filesystem::path(directory);
     this->outputDirectory   = std::filesystem::path(outputDirectory);
     this->sorter            = sorter;
+    this->id                = ++idCounter;
 }
 Anchor::Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter) {
     this->directory         = directory;
     this->outputDirectory   = outputDirectory;
     this->sorter            = sorter;
+    this->id                = ++idCounter;
 }
 
 std::filesystem::path Anchor::getDirectory() {
@@ -34,6 +38,9 @@ Sorter& Anchor::getSorter() {
     return sorter;
 }
 
+int Anchor::getID() {
+    return this->id;
+}
 //----- VALUE SORTING METHODS ------------------------------------------------------
 
 // Sorts a target integer between 2 values
@@ -158,9 +165,10 @@ void deleteTempCopy(const std::string& destPath) {
 // Iterates through an anchor, checks for any changes, and calls on the sorter to sort if there are.
 void update(Anchor anchor)
 {
-    std::cout << "Checking for changes in Anchor" << std::endl;
+    std::cout << "Checking for changes in Anchor #" << anchor.getID() << "..." << std::endl;
 
     // Get anchor variables
+    int anchorID                    = anchor.getID();
     fs::path anchorDirectory        = anchor.getDirectory();
     fs::path anchorOutputDirectory  = anchor.getOutputDirectory();
     Sorter anchorSorter             = anchor.getSorter();
@@ -168,7 +176,7 @@ void update(Anchor anchor)
     // Check if the directory is empty. If it is, do nothing.
     if (fs::is_empty(anchorDirectory))
     {
-        std::cout << "Anchor is empty." << std::endl;
+        std::cout << "Anchor #" << anchorID << " is empty." << std::endl;
         return;
     }
 
@@ -296,6 +304,6 @@ void update(Anchor anchor)
     
 
     // Tell the user it is finished updating
-    std::cout << "Successfully updated Anchor." << std::endl;
+    std::cout << "Successfully updated Anchor #" << anchorID << "." << std::endl;
 
 }
