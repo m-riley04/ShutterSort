@@ -11,17 +11,15 @@ namespace fs = filesystem;
 
 // Constructor
 Anchor::Anchor(){};
-Anchor::Anchor(std::string directory, std::string outputDirectory, Sorter& sorter, int interval) {
-    this->directory = std::filesystem::path(directory);
-    this->outputDirectory = std::filesystem::path(outputDirectory);
-    this->sorter = sorter;
-    this->interval = interval;
+Anchor::Anchor(std::string directory, std::string outputDirectory, Sorter& sorter) {
+    this->directory         = std::filesystem::path(directory);
+    this->outputDirectory   = std::filesystem::path(outputDirectory);
+    this->sorter            = sorter;
 }
-Anchor::Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter, int interval) {
-    this->directory = directory;
-    this->outputDirectory = outputDirectory;
-    this->sorter = sorter;
-    this->interval = interval;
+Anchor::Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter) {
+    this->directory         = directory;
+    this->outputDirectory   = outputDirectory;
+    this->sorter            = sorter;
 }
 
 std::filesystem::path Anchor::getDirectory() {
