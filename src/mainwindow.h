@@ -19,8 +19,27 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    // Button Commands
+    //========================== Button Commands
+    /*
+    Button commands (clicked_*) are functions that
+    are triggered after a specific button
+    is clicked.
+    */
+    //----- Debug command
     void clicked_test();
+
+    //----- Anchor Control Commands
+    void clicked_start();
+    void clicked_stop();
+
+    //----- Sorting Method Stack Commands
+    void clicked_moveMethodUp();
+    void clicked_moveMethodDown();
+    void clicked_addMethod();
+    void clicked_removeMethod();
+
+    //----- Navigation Commands
+    void clicked_settings();
 
 private:
     Ui::MainWindow ui;
