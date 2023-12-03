@@ -8,6 +8,8 @@ SortTimer::SortTimer(std::chrono::milliseconds interval, std::function<void(Anch
 	this->anchor = anchor;
 }
 
+SortTimer::~SortTimer() {}
+
 void SortTimer::start() {
 	if (active != true) {
 		active = true;
@@ -30,4 +32,3 @@ void SortTimer::setFunction(std::function<void(Anchor)> func) {
 
 void SortTimer::setAnchor(Anchor& anchor) {
 	this->anchor = anchor;
-}
