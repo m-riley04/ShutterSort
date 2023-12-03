@@ -16,10 +16,14 @@ public:
     explicit SortingMethod_qt(QWidget *parent = nullptr);
     ~SortingMethod_qt();
 
+    //----- Commands
+
+
+    /* --- GETTERS --- */
     QString getName();
     QString getTag();
-    QVariant getMin();
-    QVariant getMax();
+    QString getMin();
+    QString getMax();
     bool getActive();
 
 private:
