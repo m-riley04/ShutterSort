@@ -38,6 +38,8 @@ set(PROJECT_SOURCES
         src/sorttimer.h
         src/timer.cpp
         src/timer.h
+        src/sortingfunctions.cpp
+        src/sortingfunctions.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -45,7 +47,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         vcpkg.json
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET ShutterSort APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
