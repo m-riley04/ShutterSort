@@ -26,8 +26,8 @@ void SortTimer::start() {
 	}
 }
 
-void SortTimer::setFunction(std::function<void(Anchor)> func) {
-	this->func = func;
+void SortTimer::setFunction(std::function<void(Anchor)>& func) {
+    this->func = func;
 }
 
 void SortTimer::setAnchor(Anchor& anchor) {
