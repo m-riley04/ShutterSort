@@ -73,11 +73,18 @@ void MainWindow::clicked_stop() {
 //----- Sorting Method Stack Commands
 // Moves the selected sorting method up the stack
 void MainWindow::clicked_moveMethodUp() {
-
+    int row         = ui.list_methods->currentRow();
+    // Remove it (and remove it from memory)
+    QListWidgetItem *it = ui.list_methods->takeItem(row);
+    //QWidget *itWidget = ui.list_methods->itemWidget(it);
+    ui.list_methods->insertItem(row-1, it);
 }
 // Moves the sorting method for the Anchor down the stack
 void MainWindow::clicked_moveMethodDown() {
-
+    int row         = ui.list_methods->currentRow();
+    // Remove it (and remove it from memory)
+    QListWidgetItem *it = ui.list_methods->takeItem(row);
+    ui.list_methods->insertItem(row+1, it);
 }
 // Adds a blank sorting method to be filled in by the user to the top of the stack
 void MainWindow::clicked_addMethod() {
