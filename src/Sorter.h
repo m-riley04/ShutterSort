@@ -1,12 +1,9 @@
 #ifndef SORTER_H
 #define SORTER_H
 
-#include <iostream>
-#include <fstream> 
 #include <string>
-#include <filesystem>
 #include <list>
-#include "metadata.h"
+#include <iostream>
 #include "sortingmethod.h"
 
 class Sorter {

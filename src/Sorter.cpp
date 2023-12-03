@@ -1,6 +1,8 @@
 #include "Sorter.h"
 #include <exiv2/exiv2.hpp>
-
+#include <filesystem>
+#include <iostream>
+#include <string>
 
 // Sorts files other than images to a miscellaneous directory
 void Sorter::sortToMisc(const std::string& originalDirectory, const std::string& miscDirectory) {
