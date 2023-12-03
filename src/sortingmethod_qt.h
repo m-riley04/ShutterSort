@@ -17,7 +17,7 @@ public:
     ~SortingMethod_qt();
 
     //----- Commands
-
+    void typed_name();
 
     /* --- GETTERS --- */
     QString getName();
