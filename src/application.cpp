@@ -1,5 +1,7 @@
 #include "application.h"
-#include "shuttersort.h"
+#include "localimage.h"
+#include "metadata.h"
+#include "sortingfunctions.h"
 #include <QDebug>
 
 //----- CLASS METHODS ----------------------------------------------------------------
@@ -9,12 +11,29 @@ Application::Application() {
     this->_debug_populate();
 }
 
+std::list<Anchor>& Application::getAnchors() {
+    return anchors;
+}
+
+SortTimer& Application::getTimer() {
+    return timer;
+}
+
+void Application::setTimer(std::chrono::milliseconds interval, std::function<void(Anchor)> func, Anchor anchor) {
+    this->timer.setInterval(interval);
+    this->timer.setFunction(func);
+    this->timer.setAnchor(anchor);
+}
+
 void Application::addAnchor(std::string directoryPath, std::string outputDirectoryPath, Sorter& sorter) {
 
 }
 
-std::list<Anchor>& Application::getAnchors() {
-    return anchors;
+void Application::removeAnchor(int index) {
+
+}
+void Application::removeAnchor(const Anchor& anchor) {
+
 }
 
 void Application::printAnchors() {
@@ -44,7 +63,7 @@ void Application::run_cli() {
     Anchor anchor = this->anchors.front();
 
     // Initialize timer
-    SortTimer timer(std::chrono::milliseconds(1000), update, anchor);
+    SortTimer timer(std::chrono::milliseconds(1000), update_anchor, anchor);
 
     //----- CLI Debug----------------------------------------------------------------------------------------------------------------
     std::cout << "0. Exit\n1. Manually Update Anchor\n2. Start Auto-Sort\n3. Stop Auto-Sort\n4. Print test metadata\n5. Set new Anchor path\n6. Set new Anchor output path" << std::endl;
@@ -70,7 +89,7 @@ void Application::run_cli() {
                 break;
             case 1:
                 printf("Manual update initiated.\n");
-                update(anchor);
+                update_anchor(anchor);
                 break;
             case 2:
                 printf("Started auto-sorting...\n");

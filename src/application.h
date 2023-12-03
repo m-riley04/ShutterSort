@@ -10,16 +10,26 @@ class Application
 {
 private:
     std::list<Anchor> anchors;
-    SortTimer timer();
+    SortTimer timer;
 
 public:
     Application();
 
+    // Returns the list of Anchors created for the program
+    std::list<Anchor>& getAnchors();
+
+    // Returns the sort timer object
+    SortTimer& getTimer();
+
+    // Sets the timer object
+    void setTimer(std::chrono::milliseconds interval, std::function<void(Anchor)> func, Anchor anchor);
+
     // Adds an anchor point to the list of anchors
     void addAnchor(std::string directoryPath, std::string outputDirectoryPath, Sorter& sorter);
 
-    // Returns the list of Anchors created for the program
-    std::list<Anchor>& getAnchors();
+    // Removes an anchor point from the list of anchors
+    void removeAnchor(int index);
+    void removeAnchor(const Anchor& anchor);
 
     // Prints a list of all currently-established Anchor points
     void printAnchors();
