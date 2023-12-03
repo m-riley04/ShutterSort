@@ -3,7 +3,6 @@
 
 #include <string>
 #include <map>
-#include <iostream>
 #include <any>
 #include <exiv2/exiv2.hpp>
 

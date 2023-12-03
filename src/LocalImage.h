@@ -2,7 +2,6 @@
 #define LOCALIMAGE_H
 
 #include <filesystem>
-#include <cstring>
 #include "metadata.h"
 
 class LocalImage {
