@@ -32,3 +32,4 @@ void SortTimer::setFunction(std::function<void(Anchor)>& func) {
 
 void SortTimer::setAnchor(Anchor& anchor) {
 	this->anchor = anchor;
+}
