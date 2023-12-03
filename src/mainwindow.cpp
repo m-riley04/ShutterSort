@@ -11,9 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     // Initialize timer
-    std::function<void(Anchor)> func = update_anchor;
-    std::chrono::milliseconds interval(1000);
-    Anchor anchor = app.getAnchors().front();
+    std::function<void(Anchor)> func    = update_anchor;
+    std::chrono::milliseconds           interval(1000);
+    Anchor anchor                       = app.getAnchors().front();
     app.setTimer(interval, func, anchor);
 
     // Initialize the UI component
@@ -81,10 +81,10 @@ void MainWindow::clicked_moveMethodDown() {
 }
 // Adds a blank sorting method to be filled in by the user to the top of the stack
 void MainWindow::clicked_addMethod() {
-    auto item = new QListWidgetItem();
+    auto item       = new QListWidgetItem();
 
-    auto widget = new SortingMethod_qt(this);
-    QSize size = QSize(widget->geometry().width(), widget->geometry().height());
+    auto widget     = new SortingMethod_qt(this);
+    QSize size      = QSize(widget->geometry().width(), widget->geometry().height());
     item->setSizeHint(size);
 
     ui.list_methods->addItem(item);
@@ -92,8 +92,8 @@ void MainWindow::clicked_addMethod() {
 }
 // Removes the selected sorting method from the stack
 void MainWindow::clicked_removeMethod(){
-    int row = ui.list_methods->currentRow();
-    auto method = ui.list_methods->item(row);
+    int row         = ui.list_methods->currentRow();
+    auto method     = ui.list_methods->item(row);
 
     // Remove it (and remove it from memory)
     QListWidgetItem *it = ui.list_methods->takeItem(row);
