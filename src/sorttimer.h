@@ -8,9 +8,11 @@ class SortTimer :
     std::function<void(Anchor)> func;
 
 public:
+    SortTimer();
     SortTimer(std::chrono::milliseconds interval, std::function<void(Anchor)> func, Anchor anchor);
+    ~SortTimer();
     void start();
-    void setFunction(std::function<void(Anchor)> func);
+    void setFunction(std::function<void(Anchor)>& func);
     void setAnchor(Anchor& anchor);
 };
 

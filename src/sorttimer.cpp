@@ -1,5 +1,7 @@
 #include "sorttimer.h"
 
+SortTimer::SortTimer() {}
+
 SortTimer::SortTimer(std::chrono::milliseconds interval, std::function<void(Anchor)> func, Anchor anchor) {
 	this->interval = interval;
 	this->func = func;
