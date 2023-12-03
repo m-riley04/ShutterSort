@@ -27,7 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui.btn_moveMethodDown, &QPushButton::clicked, this, &MainWindow::clicked_moveMethodDown);
     connect(ui.btn_addMethod, &QPushButton::clicked, this, &MainWindow::clicked_addMethod);
     connect(ui.btn_removeMethod, &QPushButton::clicked, this, &MainWindow::clicked_removeMethod);
+    connect(ui.btn_apply, &QPushButton::clicked, this, &MainWindow::clicked_apply);
 
+    //===== TESTING/DEBUG ================================
     // Fill sorting method stack with dummy test widgets
     /*for (int i = 0; i < 1; ++i) {
         auto item = new QListWidgetItem();
@@ -96,6 +98,11 @@ void MainWindow::clicked_removeMethod(){
     // Remove it (and remove it from memory)
     QListWidgetItem *it = ui.list_methods->takeItem(row);
     delete it;
+}
+
+// Applies the changed made to the sorting methods stack
+void MainWindow::clicked_apply() {
+
 }
 
 //----- Navigation Commands

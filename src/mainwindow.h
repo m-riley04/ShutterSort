@@ -37,6 +37,7 @@ public:
     void clicked_moveMethodDown();
     void clicked_addMethod();
     void clicked_removeMethod();
+    void clicked_apply();
 
     //----- Navigation Commands
     void clicked_settings();
