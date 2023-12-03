@@ -46,7 +46,4 @@ class Anchor {
         void setSorter(Sorter& sorter);
 };
 
-// Iterates through an anchor, checks for any changes, and calls on the sorter to sort if there are.
-void update(Anchor anchor);
-
 #endif
