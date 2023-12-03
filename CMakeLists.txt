@@ -40,6 +40,9 @@ set(PROJECT_SOURCES
         src/timer.h
         src/sortingfunctions.cpp
         src/sortingfunctions.h
+        src/sortingmethod_qt.h
+        src/sortingmethod_qt.cpp
+        src/sortingmethod_qt.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -4,6 +4,8 @@
 #include "sortingfunctions.h"
 #include "anchor.h"
 #include "sorttimer.h"
+#include "sortingmethod_qt.h"
+#include <QListWidgetItem>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +23,24 @@ MainWindow::MainWindow(QWidget *parent)
     //----- Buttons
     connect(ui.btn_start, &QPushButton::clicked, this, &MainWindow::clicked_start);
     connect(ui.btn_stop, &QPushButton::clicked, this, &MainWindow::clicked_stop);
+    connect(ui.btn_moveMethodUp, &QPushButton::clicked, this, &MainWindow::clicked_moveMethodUp);
+    connect(ui.btn_moveMethodDown, &QPushButton::clicked, this, &MainWindow::clicked_moveMethodDown);
+    connect(ui.btn_addMethod, &QPushButton::clicked, this, &MainWindow::clicked_addMethod);
+    connect(ui.btn_removeMethod, &QPushButton::clicked, this, &MainWindow::clicked_removeMethod);
+
+    // Fill sorting method stack with dummy test widgets
+    /*for (int i = 0; i < 1; ++i) {
+        auto item = new QListWidgetItem();
+
+        auto widget = new SortingMethod_qt(this);
+        QSize size = QSize(widget->geometry().width(), widget->geometry().height());
+
+        item->setSizeHint(size);
+
+        ui.list_methods->addItem(item);
+        ui.list_methods->setItemWidget(item, widget);
+
+    }*/
 }
 
 MainWindow::~MainWindow()
@@ -59,11 +79,23 @@ void MainWindow::clicked_moveMethodDown() {
 }
 // Adds a blank sorting method to be filled in by the user to the top of the stack
 void MainWindow::clicked_addMethod() {
+    auto item = new QListWidgetItem();
 
+    auto widget = new SortingMethod_qt(this);
+    QSize size = QSize(widget->geometry().width(), widget->geometry().height());
+    item->setSizeHint(size);
+
+    ui.list_methods->addItem(item);
+    ui.list_methods->setItemWidget(item, widget);
 }
 // Removes the selected sorting method from the stack
 void MainWindow::clicked_removeMethod(){
+    int row = ui.list_methods->currentRow();
+    auto method = ui.list_methods->item(row);
 
+    // Remove it (and remove it from memory)
+    QListWidgetItem *it = ui.list_methods->takeItem(row);
+    delete it;
 }
 
 //----- Navigation Commands
