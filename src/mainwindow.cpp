@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     // Load input/output paths from JSON
     //TODO: Load data from JSON
-    std::string inputDirectory = "C:\\Users\\riley\\Desktop\\InputDirectory";
+    std::string inputDirectory = "";//"C:\\Users\\riley\\Desktop\\InputDirectory";
     std::string outputDirectory = "C:\\Users\\riley\\Desktop\\OutputDirectory";
     std::list<SortingMethod> sortingMethods = {};
 
@@ -25,8 +25,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->currentAnchor.setDirectory(inputDirectory);
     this->currentAnchor.setOutputDirectory(outputDirectory);
     this->currentAnchor.setSorter(sorter);
-
-    SortTimer timer;
 
     // Initialize timer and set
     std::function<void(Anchor)> func    = update_anchor;
@@ -73,6 +71,11 @@ void MainWindow::clicked_test() {
 //----- Anchor Control Commands
 // Starts the sorting for the Anchor
 void MainWindow::clicked_start() {
+    std::function<void(Anchor)> func    = update_anchor;
+    std::chrono::milliseconds           interval(1000);
+    this->timer.setAnchor(this->currentAnchor);
+    this->timer.setFunction(func);
+    this->timer.setInterval(interval);
     this->timer.start();
     QString str("Sorting...");
     ui.label_test->setText(str);
@@ -169,6 +172,12 @@ void MainWindow::clicked_apply() {
     // Copy currentSortingMethods list to anchor's sortingmethod list
     this->currentAnchor.getSorter().setMethodsList(this->currentSortingMethods);
 
+    std::function<void(Anchor)> func    = update_anchor;
+    std::chrono::milliseconds           interval(1000);
+    this->timer.setAnchor(this->currentAnchor);
+    this->timer.setFunction(func);
+    this->timer.setInterval(interval);
+
     // Debug Print
     this->currentAnchor.getSorter().printMethods();
 }
@@ -180,8 +189,8 @@ void MainWindow::clicked_upload() {
 void MainWindow::typed_input() {
     std::string input   = ui.line_anchorPath->text().toStdString();
     std::string output  = ui.line_outputPath->text().toStdString();
-    Anchor anchor(input, output, this->currentAnchor.getSorter());
-    this->currentAnchor = anchor;
+    this->currentAnchor.setDirectory(input);
+    this->currentAnchor.setOutputDirectory(output);
 
     ui.label_test->setText(QString("Set the new input folder."));
 }
@@ -189,8 +198,8 @@ void MainWindow::typed_input() {
 void MainWindow::typed_output() {
     std::string input   = ui.line_anchorPath->text().toStdString();
     std::string output  = ui.line_outputPath->text().toStdString();
-    Anchor anchor(input, output, this->currentAnchor.getSorter());
-    this->currentAnchor = anchor;
+    this->currentAnchor.setDirectory(input);
+    this->currentAnchor.setOutputDirectory(output);
 
     ui.label_test->setText(QString("Set the new input folder."));
 }

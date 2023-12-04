@@ -40,7 +40,7 @@ bool sort_string(std::string target, std::string str) {
 // Sort a given path's contents to an output file's directory based on if they are not an image filetype
 void sortToMisc(const std::string& originalDirectory, const std::string& outputDirectory) {
     int filesMoved                  = 0; // Counter for the number of files moved
-    std::string imageExtensions[12]  = { ".jpg", ".jpeg", ".JPG", ".JPEG", ".gif", ".bmp", ".ico", ".png", ".ps", ".svg", ".tif", ".tiff" }; // Currently supported file extensions
+    std::string imageExtensions[13]  = { ".jpg", ".jpeg", ".JPG", ".JPEG", ".ARW", ".gif", ".bmp", ".ico", ".png", ".ps", ".svg", ".tif", ".tiff" }; // Currently supported file extensions
 
     // Loop through directory's contents 1 by 1
     for (fs::directory_entry entry : fs::directory_iterator(originalDirectory)) {
@@ -168,13 +168,8 @@ void update_anchor(Anchor anchor)
     // Move all non-image entries to the miscellaneous directory
     sortToMisc(anchorDirectory.string(), anchorOutputDirectory.string());
 
-
-    // TODO: Make a copy of all images within the folder
-
-
     // Loop through every file in the input directory with a directory_iterator
     for (fs::path const &dir_entry : fs::directory_iterator(anchorDirectory)) {
-
         // Check if the current entry is a folder
         if (fs::is_directory(dir_entry))
         {
@@ -201,68 +196,80 @@ void update_anchor(Anchor anchor)
         // Print file that is being moved
         std::cout << "File found: " << filename << endl;
 
-        // Create LocalImage object to be loaded
-        LocalImage image(dir_entry);
-        Metadata metadata       = image.getMetadata();
+        Metadata metadata;
+        try {
+            // Create LocalImage object to be loaded
+            LocalImage image(dir_entry);
+            metadata       = image.getMetadata();
+        } catch (int e) {
+            std::cout << "ERROR: Failed to load metadata" << std::endl;
+            break;
+        }
 
         // Call on the sorter to check all sorting methods
         bool matches = true;
         for (SortingMethod& sortingMethod : anchorSorter.getMethods())
         {
-            // Skip if the SortingMethod status is disabled
-            if (!sortingMethod.getStatus()) { continue; }
-
             // Initialize the variables for sorting
             const string tag    = sortingMethod.getTag();
             const string name   = sortingMethod.getName();
             const std::any min  = sortingMethod.getMin();
             const std::any max  = sortingMethod.getMax();
             const auto& val     = metadata.get(tag);
+            try {
+                // Skip if the SortingMethod status is disabled
+                if (!sortingMethod.getStatus()) { continue; }
 
-            // Print the current sorting method being checked
-            std::cout << "Current Sorting Method: " << name << std::endl;
 
-            // Check if tag exists in metadata
-            if (!metadata.contains(tag))
-            {
+
+                // Print the current sorting method being checked
+                std::cout << "Current Sorting Method: " << name << std::endl;
+
+                // Check if tag exists in metadata
+                if (!metadata.contains(tag))
+                {
+                    matches = false;
+                    std::cout << "ERROR: Metadata for '" << name << "'does not contain tag '" << tag << "'." << std::endl;
+                    break;
+                }
+
+                // Make sure value isn't null
+                if (!val.has_value()) {
+                    std::cout << "No value for tag: " << tag << std::endl;
+                    matches = false;
+                    break;
+                }
+
+                // Check all types
+                bool passed;
+                if (val.type() == typeid(double)) {
+                    passed = sort_double(std::any_cast<double>(val), std::any_cast<double>(min), std::any_cast<double>(max));
+                }
+                else if (val.type() == typeid(int)) {
+                    passed = sort_int(std::any_cast<int>(val), std::any_cast<int>(min), std::any_cast<int>(max));
+                }
+                else if (val.type() == typeid(float)) {
+                    passed = sort_float(std::any_cast<float>(val), std::any_cast<float>(min), std::any_cast<float>(max));
+                }
+                else if (val.type() == typeid(std::string)) {
+                    passed = sort_string(std::any_cast<std::string>(val), std::any_cast<std::string>(min));
+                }
+                else {
+                    std::cout << "Unsupported type for metadata tag '" << tag << "'." << std::endl;
+                    matches = false;
+                    break;
+                }
+
+                // Test the sorting function
+                if (!passed)
+                {
+                    matches = false;
+                    std::cout << "Failed Sorting Method Test: " << name << std::endl;
+                    break;
+                }
+            } catch (int e) {
+                std::cout << "Failed to sort by method " << name << std::endl;
                 matches = false;
-                std::cout << "ERROR: Metadata for '" << name << "'does not contain tag '" << tag << "'." << std::endl;
-                break;
-            }
-
-            // Make sure value isn't null
-            if (!val.has_value()) {
-                std::cout << "No value for tag: " << tag << std::endl;
-                matches = false;
-                break;
-            }
-
-            // Check all types
-            bool passed;
-            if (val.type() == typeid(double)) {
-                passed = sort_double(std::any_cast<double>(val), std::any_cast<double>(min), std::any_cast<double>(max));
-            }
-            else if (val.type() == typeid(int)) {
-                passed = sort_int(std::any_cast<int>(val), std::any_cast<int>(min), std::any_cast<int>(max));
-            }
-            else if (val.type() == typeid(float)) {
-                passed = sort_float(std::any_cast<float>(val), std::any_cast<float>(min), std::any_cast<float>(max));
-            }
-            else if (val.type() == typeid(std::string)) {
-                passed = sort_string(std::any_cast<std::string>(val), std::any_cast<std::string>(min));
-            }
-            else {
-                std::cout << "Unsupported type for metadata tag '" << tag << "'." << std::endl;
-                matches = false;
-                break;
-            }
-
-            // Test the sorting function
-            if (!passed)
-            {
-                matches = false;
-                std::cout << "Failed Sorting Method Test: " << name << std::endl;
-                break;
             }
         }
 
