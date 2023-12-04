@@ -5,11 +5,7 @@
 #include <QDebug>
 
 //----- CLASS METHODS ----------------------------------------------------------------
-Application::Application() {
-
-    // TESTING - REMOVE LATER
-    this->_debug_populate();
-}
+Application::Application() {}
 
 std::list<Anchor>& Application::getAnchors() {
     return anchors;
@@ -46,7 +42,7 @@ void Application::printAnchors() {
 //----- DEBUG METHODS ----------------------------------------------------------------
 // Starts the main CLI application loop
 void Application::run_cli() {
-
+/*
     // Test to see if main executes successfully.
     printf("ShutterSort has started successfully.\n");
 
@@ -60,7 +56,7 @@ void Application::run_cli() {
     }
 
     // Set anchor value
-    Anchor anchor = this->anchors.front();
+    Anchor & anchor = this->anchors.front();
 
     // Initialize timer
     SortTimer timer(std::chrono::milliseconds(1000), update_anchor, anchor);
@@ -165,6 +161,7 @@ void Application::run_cli() {
                 break;
         }
     }
+*/
 }
 
 // Populates the application with a test anchor with test sorting methods

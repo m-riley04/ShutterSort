@@ -4,6 +4,8 @@
 #include "src/ui_mainwindow.h"
 #include <QMainWindow>
 #include "application.h"
+#include <list>
+#include "sortingmethod.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -42,8 +44,22 @@ public:
     //----- Navigation Commands
     void clicked_settings();
 
+    //----- Other
+    void clicked_upload();
+
+    //========================== Other Widget Commands
+    void typed_input();
+    void typed_output();
+
+    // Misc
+    void save();
+    void load();
+
 private:
+    std::list<SortingMethod> currentSortingMethods;
+    Anchor currentAnchor;
     Ui::MainWindow ui;
-    Application app;
+    SortTimer timer;
+    //Application app;
 };
 #endif // MAINWINDOW_H

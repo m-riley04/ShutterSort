@@ -26,8 +26,8 @@ public:
     /* --- GETTERS --- */
     QString getName();
     QString getTag();
-    QString getMin();
-    QString getMax();
+    double getMin();
+    double getMax();
     bool getActive();
 
 private:
@@ -36,6 +36,7 @@ private:
     QString min;
     QString max;
     bool active;
+    std::map<std::string, std::string> exifTags;
     Ui::SortingMethod_qt *ui;
 };
 

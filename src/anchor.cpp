@@ -1,7 +1,8 @@
 #include "anchor.h"
 #include "sorter.h"
 #include <string>
-
+#include <iostream>
+#include <QDebug>
 
 using namespace std;
 namespace fs = filesystem;
@@ -9,12 +10,16 @@ namespace fs = filesystem;
 int Anchor::idCounter = 0;
 
 // Constructor
-Anchor::Anchor() { id = ++idCounter; }
+Anchor::Anchor() {
+    id = ++idCounter;
+    qDebug() << "Anchor #" << this->id << " created blank.";
+}
 Anchor::Anchor(std::string directory, std::string outputDirectory, Sorter& sorter) {
     this->directory         = std::filesystem::path(directory);
     this->outputDirectory   = std::filesystem::path(outputDirectory);
     this->sorter            = sorter;
     this->id                = ++idCounter;
+    std::cout << "Anchor #" << this->id << " created with strings." << std::endl;
 }
 Anchor::Anchor(std::filesystem::path directory, std::filesystem::path outputDirectory, Sorter& sorter) {
     this->directory         = directory;

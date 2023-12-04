@@ -10,10 +10,15 @@ class Sorter {
         std::list<SortingMethod> methods;
 
     public:
+        Sorter();
+        ~Sorter();
         void printMethods();
 
         /* --- GETTERS --- */
         std::list<SortingMethod>& getMethods();
+
+        /* --- SETTERS --- */
+        void setMethodsList(std::list<SortingMethod>& methods);
 
 };
 

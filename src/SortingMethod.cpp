@@ -5,12 +5,12 @@
 //----- CLASS METHODS ------------------------------------------------------
 // Default constructor
 SortingMethod::SortingMethod()
-    : name(""), tag(""), min(std::any(double(0))), max(std::any(double(0))), status(DISABLED) {
+    : name("Sorting Method"), tag("Exif.Image.Brightness"), min(std::any(double(0))), max(std::any(double(1))), status(ENABLED) {
 }
 
 // Parameterized constructor
 SortingMethod::SortingMethod(std::string name, std::string tag, std::any min, std::any max)
-    : name(name), tag(tag), min(min), max(max), status(DISABLED) {
+    : name(name), tag(tag), min(min), max(max), status(ENABLED) {
 }
 
 /* --- GETTERS --- */
