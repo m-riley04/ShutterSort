@@ -11,6 +11,10 @@ SortingMethod_qt::SortingMethod_qt(QWidget *parent)
     //==================== Connect widgets
     //----- Buttons
     connect(ui->line_name, &QLineEdit::textChanged, this, &SortingMethod_qt::typed_name);
+    connect(ui->dropdown_tags, &QComboBox::currentTextChanged, this, &SortingMethod_qt::selected_tag);
+    connect(ui->line_min, &QLineEdit::textChanged, this, &SortingMethod_qt::typed_min);
+    connect(ui->line_max, &QLineEdit::textChanged, this, &SortingMethod_qt::typed_max);
+    connect(ui->checkbox_active, &QCheckBox::stateChanged, this, &SortingMethod_qt::checked_active);
 }
 
 SortingMethod_qt::~SortingMethod_qt()
