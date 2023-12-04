@@ -1,5 +1,6 @@
 #include "sortingmethod_qt.h"
 #include "ui_sortingmethod_qt.h"
+#include <map>
 
 SortingMethod_qt::SortingMethod_qt(QWidget *parent)
     : QWidget(parent)
@@ -15,6 +16,15 @@ SortingMethod_qt::SortingMethod_qt(QWidget *parent)
     connect(ui->line_min, &QLineEdit::textChanged, this, &SortingMethod_qt::typed_min);
     connect(ui->line_max, &QLineEdit::textChanged, this, &SortingMethod_qt::typed_max);
     connect(ui->checkbox_active, &QCheckBox::stateChanged, this, &SortingMethod_qt::checked_active);
+
+    //==================== Populate dropdown with tags
+    std::map<std::string, std::string> tagMap = {
+        {"Brightness", "Exif.Image.Brightness"},
+        {"Compression", "Exif.Image.Compression"}
+    };
+    for (auto & i : tagMap) {
+        ui->dropdown_tags->addItem(QString(i.first.c_str()));
+    }
 }
 
 SortingMethod_qt::~SortingMethod_qt()
