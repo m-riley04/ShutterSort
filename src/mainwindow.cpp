@@ -88,8 +88,14 @@ void MainWindow::clicked_moveMethodDown() {
 }
 // Adds a blank sorting method to be filled in by the user to the top of the stack
 void MainWindow::clicked_addMethod() {
-    auto item       = new QListWidgetItem();
+    // Create sorting method
+    Anchor anchor = app.getAnchors().front();
+    SortingMethod method;
 
+    // Push blank sorting method to the back of the anchor
+    anchor.getSorter().getMethods().push_back(method);
+
+    auto item       = new QListWidgetItem();
     auto widget     = new SortingMethod_qt(this);
     QSize size      = QSize(widget->geometry().width(), widget->geometry().height());
     item->setSizeHint(size);
