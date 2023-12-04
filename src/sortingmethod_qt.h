@@ -18,6 +18,10 @@ public:
 
     //----- Commands
     void typed_name();
+    void selected_tag();
+    void typed_min();
+    void typed_max();
+    void checked_active();
 
     /* --- GETTERS --- */
     QString getName();
@@ -27,7 +31,11 @@ public:
     bool getActive();
 
 private:
-    SortingMethod methodData;
+    QString name;
+    QString tag;
+    QString min;
+    QString max;
+    bool active;
     Ui::SortingMethod_qt *ui;
 };
 

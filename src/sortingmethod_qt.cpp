@@ -35,31 +35,48 @@ SortingMethod_qt::~SortingMethod_qt()
 //===== COMMANDS ===============================
 // Command for when a user types inside the name box
 void SortingMethod_qt::typed_name() {
-
+    name = ui->line_name->text();
 }
+
+void SortingMethod_qt::selected_tag() {
+    tag = ui->dropdown_tags->currentText();
+}
+
+void SortingMethod_qt::typed_min() {
+    min = ui->line_min->text();
+}
+
+void SortingMethod_qt::typed_max() {
+    max = ui->line_max->text();
+}
+
+void SortingMethod_qt::checked_active() {
+    active = ui->checkbox_active->isChecked();
+}
+
 
 //===== GETTERS ===============================
 // Returns the name of the method as a QString
 QString SortingMethod_qt::getName() {
-    return ui->line_name->text();
+    return name;
 }
 
 // Returns the tag of the method as a QString
 QString SortingMethod_qt::getTag() {
-    return ui->dropdown_tags->currentText();
+    return tag;
 }
 
 // Returns the minimum value of the method as a QString
 QString SortingMethod_qt::getMin() {
-    return ui->line_min->text();
+    return min;
 }
 
 // Returns the maximum value of the method as a QString
 QString SortingMethod_qt::getMax() {
-    return ui->line_max->text();
+    return max;
 }
 
 // Returns the active status of the method as a bool
 bool SortingMethod_qt::getActive() {
-    return ui->checkbox_active->isChecked();
+    return active;
 }
