@@ -7,7 +7,7 @@ A team project for EECS 348 - Software Development I at the University of Kansas
 * [Functionality](#Functionality)
   * [Planned Functionality](#Planned-Functionality)
 * [Installation](#Installation)
-* [Building](#Building)
+* [Building](#Building-and-Testing)
   * [Dependencies](#Dependencies)
 * [The Team](#The-Team)
   * [Members](#Members)
